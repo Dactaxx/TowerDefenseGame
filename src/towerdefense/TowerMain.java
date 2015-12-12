@@ -31,11 +31,14 @@ public class TowerMain extends JPanel implements Runnable {
 		
 	}
 
-	public void init() {
+	public void init() throws IOException {
 		Window.createWindow();
 		Window.frame.addMouseListener(new MouseInput());
 		Window.frame.addKeyListener(new KeyInput());
 
+		towers.Turret turret = new towers.Turret(500, 500);
+		TowerRenderer.towerlist.add(turret);
+		
 	}
 	
 	public static synchronized void start() throws IOException {
@@ -48,13 +51,20 @@ public class TowerMain extends JPanel implements Runnable {
 		
 		Thread thread = new Thread(new TowerMain());
 		thread.start();
-		state = MENU;
+		state = GAME;
 		
 	}
 	
 	@Override
 	public void run() {
-		init();
+		try {
+			init();
+			
+		}	catch (IOException e) {
+			e.printStackTrace();
+			
+			}
+		
 		long then = System.nanoTime();
 		while(running) {
 			long now = System.nanoTime();
@@ -77,6 +87,7 @@ public class TowerMain extends JPanel implements Runnable {
 		g2d.fillRect(0, 0, Window.width, Window.height);
 		
 		if(state == GAME) {
+			TowerRenderer.render(g2d);
 			
 		}
 		
@@ -96,6 +107,12 @@ public class TowerMain extends JPanel implements Runnable {
 			
 		}
 		
+/*		g2d.setColor(new Color(255, 0, 0));
+		g2d.fillRect(500, 500, 100, 100);
+		
+		g2d.setColor(new Color(0, 255, 0));
+		g2d.fillRect(525, 525, 50, 50);
+*/		
 	}
 	
 	public void tick() {
