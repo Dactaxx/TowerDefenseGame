@@ -27,7 +27,6 @@ public class TowerMain extends JPanel implements Runnable {
 	
 	public static void main(String[] args) throws IOException {
 		start();
-
 		
 	}
 
