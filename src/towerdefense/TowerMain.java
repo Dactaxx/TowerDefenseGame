@@ -51,6 +51,7 @@ public class TowerMain extends JPanel implements Runnable {
 		
 		Thread thread = new Thread(new TowerMain());
 		thread.start();
+		TowerRenderer.start();
 		state = GAME;
 		
 	}
