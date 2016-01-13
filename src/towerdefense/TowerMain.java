@@ -27,6 +27,7 @@ public class TowerMain extends JPanel implements Runnable {
 	
 	public static void main(String[] args) throws IOException {
 		start();
+		TowerRenderer.start();
 		
 	}
 
@@ -85,7 +86,7 @@ public class TowerMain extends JPanel implements Runnable {
 		
 		g2d.fillRect(0, 0, Window.width, Window.height);
 		
-		if(state == GAME) {
+		if(state == GAME || state == PAUSED) {
 			TowerRenderer.render(g2d);
 			
 		}

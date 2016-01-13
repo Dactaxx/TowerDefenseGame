@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import towerdefense.TowerMain;
+
 public class Turret extends Tower {
 	private BufferedImage base, turret;
 	
@@ -23,7 +25,15 @@ public class Turret extends Tower {
 	
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
+		if(TowerMain.mousex < this.getX()) {
+			this.setAngle(Math.atan((this.getY() - TowerMain.mousey) / (this.getX() - TowerMain.mousex))- Math.toRadians(90));
+			
+		}
+		
+		if(TowerMain.mousex > this.getX()) {
+			this.setAngle(Math.atan((this.getY() - TowerMain.mousey) / (this.getX() - TowerMain.mousex))- Math.toRadians(90) + Math.toRadians(180));
+			
+		}
 		
 	}
 
@@ -31,7 +41,7 @@ public class Turret extends Tower {
 	public void render(Graphics2D g2d) {
 		g2d.drawImage(base, (int)(getX() - base.getWidth() / 2), (int)(getY() - base.getHeight() / 2), null);
 		
-		AffineTransform trans = AffineTransform.getRotateInstance(Math.atan2(MouseInfo.getPointerInfo().getLocation().getY(), MouseInfo.getPointerInfo().getLocation().getX()) - Math.atan2(getY(), getX()), turret.getWidth() / 2, turret.getHeight() / 2);
+		AffineTransform trans = AffineTransform.getRotateInstance(this.getAngle(), turret.getWidth() / 2, turret.getHeight() / 2);
 		AffineTransformOp op = new AffineTransformOp(trans, AffineTransformOp.TYPE_BILINEAR);
 		
 		g2d.drawImage(op.filter(turret, null), (int)(getX() - turret.getWidth() / 2), (int)(getY() - turret.getHeight() / 2), null);

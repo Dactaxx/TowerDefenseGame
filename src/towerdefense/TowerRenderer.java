@@ -1,5 +1,6 @@
 package towerdefense;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
@@ -15,11 +16,11 @@ public class TowerRenderer implements Runnable {
 	@Override
 	public void run() {
 		long then = System.nanoTime();
-		while(TowerMain.running && TowerMain.state == TowerMain.GAME) {
+		while(TowerMain.running && TowerMain.state == TowerMain.GAME || TowerMain.state == TowerMain.PAUSED) {
 			long now = System.nanoTime();
 			if(now - then >= 16666667) {
 				then = System.nanoTime();
-				tick();
+				if(TowerMain.state == TowerMain.GAME) tick();
 				
 			}
 			now = System.nanoTime();
