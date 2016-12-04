@@ -34,7 +34,7 @@ public abstract class Tower {
 	
 	public void setAngle(double angle) {
 		this.angle = angle;
-		
+
 	}
 
 }

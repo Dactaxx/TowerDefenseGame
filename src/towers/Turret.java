@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import towerdefense.TowerMain;
+
 public class Turret extends Tower {
 	private BufferedImage base, turret;
 	
@@ -23,14 +25,15 @@ public class Turret extends Tower {
 	
 	@Override
 	public void tick() {
-		if(MouseInfo.getPointerInfo().getLocation().getX() > this.getX()) {
-			this.setAngle(Math.atan((this.getY() - MouseInfo.getPointerInfo().getLocation().getY()) / (this.getX() - MouseInfo.getPointerInfo().getLocation().getX())) + Math.toRadians(90));
-		
+
+		if(TowerMain.mousex < this.getX()) {
+			this.setAngle(Math.atan((this.getY() - TowerMain.mousey) / (this.getX() - TowerMain.mousex))- Math.toRadians(90));
+			
 		}
 		
-		if(MouseInfo.getPointerInfo().getLocation().getX() < this.getX()) {
-			this.setAngle(Math.toRadians(180) + Math.atan((this.getY() - MouseInfo.getPointerInfo().getLocation().getY()) / (this.getX() - MouseInfo.getPointerInfo().getLocation().getX())) + Math.toRadians(90));
-		
+		if(TowerMain.mousex > this.getX()) {
+			this.setAngle(Math.atan((this.getY() - TowerMain.mousey) / (this.getX() - TowerMain.mousex))- Math.toRadians(90) + Math.toRadians(180));
+			
 		}
 		
 	}

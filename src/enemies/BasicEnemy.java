@@ -21,4 +21,9 @@ public class BasicEnemy extends Enemy {
 		
 	}
 	
+	public void render() {
+		
+		
+	}
+	
 }

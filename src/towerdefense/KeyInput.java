@@ -9,7 +9,13 @@ public class KeyInput implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if(key == KeyEvent.VK_ESCAPE) {
-			TowerMain.state = TowerMain.PAUSED;
+			if(TowerMain.state == TowerMain.GAME) {
+				TowerMain.state = TowerMain.PAUSED;
+				
+			}	else if(TowerMain.state == TowerMain.PAUSED) {
+					TowerMain.state = TowerMain.GAME;
+				
+				}
 			
 		}
 		

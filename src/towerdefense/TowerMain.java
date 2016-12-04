@@ -28,7 +28,7 @@ public class TowerMain extends JPanel implements Runnable {
 	
 	public static void main(String[] args) throws IOException {
 		start();
-
+		TowerRenderer.start();
 		
 	}
 
@@ -88,7 +88,7 @@ public class TowerMain extends JPanel implements Runnable {
 		
 		g2d.fillRect(0, 0, Window.width, Window.height);
 		
-		if(state == GAME) {
+		if(state == GAME || state == PAUSED) {
 			TowerRenderer.render(g2d);
 			
 		}
@@ -102,7 +102,7 @@ public class TowerMain extends JPanel implements Runnable {
 				
 			}
 			
-			if(mousex >(Window.width - resume.getWidth()) / 2 && mousex < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && mousey > (resume.getHeight() * 2 + 50) / 2 && mousey < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight()) {
+			if(mousex >(Window.width - resume.getWidth()) / 2 && mousex < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && mousey > (Window.height - (resume.getHeight() * 2 + 50)) / 2 && mousey < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight()) {
 				g2d.drawImage(resumeh, (Window.width - resumeh.getWidth()) / 2, (Window.height - (resumeh.getHeight() * 2 + 50)) / 2, null);
 				
 			}
