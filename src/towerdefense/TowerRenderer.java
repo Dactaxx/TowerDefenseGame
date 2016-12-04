@@ -37,6 +37,7 @@ public class TowerRenderer implements Runnable {
 		
 	}
 	
+	//render is invoked in the main because of paintComponent reference jargon
 	public static void render(Graphics2D g2d) {
 		for(int i = 0; i < towerlist.size(); i++) {
 			towerlist.get(i).render(g2d);

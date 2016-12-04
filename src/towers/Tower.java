@@ -3,10 +3,11 @@ package towers;
 import java.awt.Graphics2D;
 
 public abstract class Tower {
-	private double x, y, angle;
+	private double x, y, angle, range;
 	
 	public abstract void tick();
 	public abstract void render(Graphics2D g2d);
+	public abstract void trackEnemy();
 	
 	public double getX() {
 		return x;
@@ -35,6 +36,14 @@ public abstract class Tower {
 	public void setAngle(double angle) {
 		this.angle = angle;
 
+	}
+	
+	public double getRange() {
+		return range;
+	}
+	
+	public void setRange(double range) {
+		this.range = range;
 	}
 
 }

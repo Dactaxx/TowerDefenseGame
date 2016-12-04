@@ -40,6 +40,9 @@ public class TowerMain extends JPanel implements Runnable {
 		towers.Turret turret = new towers.Turret(500, 500);
 		TowerRenderer.towerlist.add(turret);
 		
+		enemies.BasicEnemy basicEnemy = new enemies.BasicEnemy(0, 350);
+		EnemyRenderer.enemylist.add(basicEnemy);
+		
 	}
 	
 	public static synchronized void start() throws IOException {
@@ -53,6 +56,7 @@ public class TowerMain extends JPanel implements Runnable {
 		Thread thread = new Thread(new TowerMain());
 		thread.start();
 		TowerRenderer.start();
+		EnemyRenderer.start();
 		state = GAME;
 		
 	}
@@ -90,6 +94,7 @@ public class TowerMain extends JPanel implements Runnable {
 		
 		if(state == GAME || state == PAUSED) {
 			TowerRenderer.render(g2d);
+			EnemyRenderer.render(g2d);
 			
 		}
 		
