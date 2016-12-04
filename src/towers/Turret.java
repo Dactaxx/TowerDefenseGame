@@ -33,15 +33,13 @@ public class Turret extends Tower {
 		
 		}
 		
-		System.out.println(this.getAngle());
-		
-		
 	}
 
 	@Override
 	public void render(Graphics2D g2d) {
 		g2d.drawImage(base, (int)(getX() - base.getWidth() / 2), (int)(getY() - base.getHeight() / 2), null);
 		
+		//rotation; currently just points toward mouse; add enemy tracking later
 		AffineTransform trans = AffineTransform.getRotateInstance(this.getAngle(), turret.getWidth() / 2, turret.getHeight() / 2);
 		AffineTransformOp op = new AffineTransformOp(trans, AffineTransformOp.TYPE_BILINEAR);
 		

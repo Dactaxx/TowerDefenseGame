@@ -23,6 +23,7 @@ public class TowerMain extends JPanel implements Runnable {
 	
 	public static boolean mousedown = false;
 	
+	//if h concludes an image name, it denotes that it is the hovered version of an image
 	public static BufferedImage resume, resumeh, exit, exith;
 	
 	public static void main(String[] args) throws IOException {
