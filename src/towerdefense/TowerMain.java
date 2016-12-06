@@ -14,10 +14,10 @@ import javax.swing.JPanel;
 public class TowerMain extends JPanel implements Runnable {
 	private static final long serialVersionUID = 8291911686213150373L;
 	public static boolean running = false;
-	public static int MENU = 0;
-	public static int GAME = 1;
-	public static int PAUSED = 2;
+	public static final int MENU = 0;
+	public static final int GAME = 1;
 	public static int state;
+	public static int PAUSED = 2;
 	
 	public static double mousex, mousey;
 	
@@ -91,7 +91,7 @@ public class TowerMain extends JPanel implements Runnable {
 		g2d.setColor(new Color(0, 0, 0));
 		
 		g2d.fillRect(0, 0, Window.width, Window.height);
-		
+		/*
 		if(state == GAME || state == PAUSED) {
 			TowerRenderer.render(g2d);
 			EnemyRenderer.render(g2d);
@@ -114,7 +114,7 @@ public class TowerMain extends JPanel implements Runnable {
 			
 		}
 		
-/*		g2d.setColor(new Color(255, 0, 0));
+		g2d.setColor(new Color(255, 0, 0));
 		g2d.fillRect(500, 500, 100, 100);
 		
 		g2d.setColor(new Color(0, 255, 0));
@@ -125,15 +125,14 @@ public class TowerMain extends JPanel implements Runnable {
 	public void tick() {
 		mousex = MouseInfo.getPointerInfo().getLocation().getX();
 		mousey = MouseInfo.getPointerInfo().getLocation().getY();
-		
-		if(state == PAUSED && mousex >(Window.width - resume.getWidth()) / 2 && mousex < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && mousey > (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 && mousey < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 + resume.getHeight() && mousedown) {
-			System.exit(1);
-			
-		}
-		
-		if(state == PAUSED && mousex >(Window.width - resume.getWidth()) / 2 && mousex < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && mousey > (resume.getHeight() * 2 + 50) / 2 && mousey < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() && mousedown) {
-			state = GAME;
-			
+
+		switch(state){
+			case MENU:
+
+				break;
+			case GAME:
+
+				break;
 		}
 		
 	}
