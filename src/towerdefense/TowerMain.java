@@ -23,9 +23,6 @@ public class TowerMain extends JPanel implements Runnable {
 	
 	public static boolean mousedown = false;
 	
-	//if h concludes an image name, it denotes that it is the hovered version of an image
-	public static BufferedImage resume, resumeh, exit, exith;
-	
 	public static void main(String[] args) throws IOException {
 		start();
 		TowerRenderer.start();
@@ -43,15 +40,12 @@ public class TowerMain extends JPanel implements Runnable {
 		enemies.BasicEnemy basicEnemy = new enemies.BasicEnemy(0, 350);
 		EnemyRenderer.enemylist.add(basicEnemy);
 		
+		GUI.init();
+		
 	}
 	
 	public static synchronized void start() throws IOException {
 		running = true;
-		
-		resume = ImageIO.read(new File("res/resume.png"));
-		exit = ImageIO.read(new File("res/exit.png"));
-		resumeh = ImageIO.read(new File("res/resumeh.png"));
-		exith = ImageIO.read(new File("res/exith.png"));
 		
 		Thread thread = new Thread(new TowerMain());
 		thread.start();
@@ -95,22 +89,12 @@ public class TowerMain extends JPanel implements Runnable {
 		if(state == GAME || state == PAUSED) {
 			TowerRenderer.render(g2d);
 			EnemyRenderer.render(g2d);
+			GUI.render(g2d);
 			
 		}
 		
-		if(state == PAUSED) 	{
-			g2d.drawImage(resume, (Window.width - resume.getWidth()) / 2, (Window.height - (resume.getHeight() * 2 + 50)) / 2, null);
-			g2d.drawImage(exit, (Window.width - exit.getWidth()) / 2, (Window.height - (exit.getHeight() * 2 + 50)) / 2 + exit.getHeight() + 50, null);
-			
-			if(mousex >(Window.width - exith.getWidth()) / 2 && mousex < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && mousey > (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 && mousey < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 + resume.getHeight()) {
-				g2d.drawImage(exith, (Window.width - exith.getWidth()) / 2, (Window.height - (exith.getHeight() * 2 + 50)) / 2 + exith.getHeight() + 50, null);
-				
-			}
-			
-			if(mousex >(Window.width - resume.getWidth()) / 2 && mousex < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && mousey > (Window.height - (resume.getHeight() * 2 + 50)) / 2 && mousey < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight()) {
-				g2d.drawImage(resumeh, (Window.width - resumeh.getWidth()) / 2, (Window.height - (resumeh.getHeight() * 2 + 50)) / 2, null);
-				
-			}
+		if(state == PAUSED) {
+			GUI.renderMenu(g2d);
 			
 		}
 		
@@ -125,16 +109,6 @@ public class TowerMain extends JPanel implements Runnable {
 	public void tick() {
 		mousex = MouseInfo.getPointerInfo().getLocation().getX();
 		mousey = MouseInfo.getPointerInfo().getLocation().getY();
-		
-		if(state == PAUSED && mousex >(Window.width - resume.getWidth()) / 2 && mousex < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && mousey > (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 && mousey < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 + resume.getHeight() && mousedown) {
-			System.exit(1);
-			
-		}
-		
-		if(state == PAUSED && mousex >(Window.width - resume.getWidth()) / 2 && mousex < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && mousey > (resume.getHeight() * 2 + 50) / 2 && mousey < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() && mousedown) {
-			state = GAME;
-			
-		}
 		
 	}
 	
