@@ -22,12 +22,12 @@ public class GUI {
 	}
 	
 	public static void tick() {
-		if(TowerMain.state == TowerMain.PAUSED && TowerMain.mouseX >(Window.width - resume.getWidth()) / 2 && TowerMain.mouseX < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 && TowerMain.mouseY < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 + resume.getHeight() && TowerMain.mouseDown) {
+		if(TowerMain.state == TowerMain.PAUSED && TowerMain.mouseX > (Window.width - exith.getWidth()) / 2 && TowerMain.mouseX < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 && TowerMain.mouseY < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 + resume.getHeight() && TowerMain.mouseDown) {
 			System.exit(1);
 			
 		}
 		
-		if(TowerMain.state == TowerMain.PAUSED && TowerMain.mouseX >(Window.width - resume.getWidth()) / 2 && TowerMain.mouseX < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (resume.getHeight() * 2 + 50) / 2 && TowerMain.mouseY < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() && TowerMain.mouseDown) {
+		if(TowerMain.state == TowerMain.PAUSED && TowerMain.mouseX > (Window.width - resume.getWidth()) / 2 && TowerMain.mouseX < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (resume.getHeight() * 2 + 50) / 2 && TowerMain.mouseY < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() && TowerMain.mouseDown) {
 			TowerMain.state = TowerMain.GAME;
 			
 		}
