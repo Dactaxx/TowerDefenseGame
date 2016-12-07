@@ -27,13 +27,13 @@ public class Turret extends Tower {
 	@Override
 	public void tick() {
 
-/*		if(TowerMain.mousex < this.getX()) {
-			this.setAngle(Math.atan((this.getY() - TowerMain.mousey) / (this.getX() - TowerMain.mousex)) - Math.toRadians(90));
+/*		if(TowerMain.mouseX < this.getX()) {
+			this.setAngle(Math.atan((this.getY() - TowerMain.mouseY) / (this.getX() - TowerMain.mouseX)) - Math.toRadians(90));
 			
 		}
 		
-		if(TowerMain.mousex > this.getX()) {
-			this.setAngle(Math.atan((this.getY() - TowerMain.mousey) / (this.getX() - TowerMain.mousex)) - Math.toRadians(90) + Math.toRadians(180));
+		if(TowerMain.mouseX > this.getX()) {
+			this.setAngle(Math.atan((this.getY() - TowerMain.mouseY) / (this.getX() - TowerMain.mouseX)) - Math.toRadians(90) + Math.toRadians(180));
 			
 		}
 */		

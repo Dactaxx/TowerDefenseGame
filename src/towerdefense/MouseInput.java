@@ -25,13 +25,13 @@ public class MouseInput implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		TowerMain.mousedown = true;
+		TowerMain.mouseDown = true;
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		TowerMain.mousedown = false;
+		TowerMain.mouseDown = false;
 		
 	}
 

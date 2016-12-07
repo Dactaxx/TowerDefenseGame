@@ -1,5 +1,7 @@
 package towerdefense;
 
+import GUI.GUI;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,9 +18,9 @@ public class TowerMain extends JPanel implements Runnable {
 	public static int state;
 	public static int PAUSED = 2;
 	
-	public static double mousex, mousey;
+	public static double mouseX, mouseY;
 	
-	public static boolean mousedown = false;
+	public static boolean mouseDown = false;
 	
 	public static void main(String[] args) throws IOException {
 		start();
@@ -104,8 +106,8 @@ public class TowerMain extends JPanel implements Runnable {
 	}
 	
 	public void tick() {
-		mousex = MouseInfo.getPointerInfo().getLocation().getX();
-		mousey = MouseInfo.getPointerInfo().getLocation().getY();
+		mouseX = MouseInfo.getPointerInfo().getLocation().getX();
+		mouseY = MouseInfo.getPointerInfo().getLocation().getY();
 		
 	}
 	
