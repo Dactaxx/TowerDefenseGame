@@ -14,10 +14,10 @@ import javax.swing.JPanel;
 public class TowerMain extends JPanel implements Runnable {
 	private static final long serialVersionUID = 8291911686213150373L;
 	public static boolean running = false;
-	public static int MENU = 0;
-	public static int GAME = 1;
-	public static int PAUSED = 2;
+	public static final int MENU = 0;
+	public static final int GAME = 1;
 	public static int state;
+	public static int PAUSED = 2;
 	
 	public static double mousex, mousey;
 	
@@ -98,17 +98,21 @@ public class TowerMain extends JPanel implements Runnable {
 			
 		}
 		
-/*		g2d.setColor(new Color(255, 0, 0));
+		g2d.setColor(new Color(255, 0, 0));
 		g2d.fillRect(500, 500, 100, 100);
 		
 		g2d.setColor(new Color(0, 255, 0));
 		g2d.fillRect(525, 525, 50, 50);
-*/		
+		
 	}
 	
 	public void tick() {
 		mousex = MouseInfo.getPointerInfo().getLocation().getX();
 		mousey = MouseInfo.getPointerInfo().getLocation().getY();
+
+		TowerRenderer.tick();
+		EnemyRenderer.tick();
+		GUI.tick();
 		
 	}
 	
