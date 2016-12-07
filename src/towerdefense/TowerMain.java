@@ -106,10 +106,6 @@ public class TowerMain extends JPanel implements Runnable {
 	public void tick() {
 		mousex = MouseInfo.getPointerInfo().getLocation().getX();
 		mousey = MouseInfo.getPointerInfo().getLocation().getY();
-
-		TowerRenderer.tick();
-		EnemyRenderer.tick();
-		GUI.tick();
 		
 	}
 	
