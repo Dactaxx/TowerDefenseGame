@@ -16,7 +16,7 @@ public class TowerRenderer implements Runnable {
 	@Override
 	public void run() {
 		long then = System.nanoTime();
-		while(TowerMain.running && TowerMain.state == TowerMain.GAME || TowerMain.state == TowerMain.PAUSED) {
+		while(TowerMain.running && TowerMain.state == TowerMain.GAME || !TowerMain.paused) {
 			long now = System.nanoTime();
 			if(now - then >= 16666667) {
 				then = System.nanoTime();

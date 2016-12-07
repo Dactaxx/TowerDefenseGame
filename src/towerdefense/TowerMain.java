@@ -15,11 +15,10 @@ public class TowerMain extends JPanel implements Runnable {
 	public static boolean running = false;
 	public static final int MENU = 0;
 	public static final int GAME = 1;
+	public static final int SETTINGS = 2;
 	public static int state;
-	public static int PAUSED = 2;
-	
+	public static boolean paused = false;
 	public static double mouseX, mouseY;
-	
 	public static boolean mouseDown = false;
 	
 	public static void main(String[] args) throws IOException {
@@ -50,7 +49,7 @@ public class TowerMain extends JPanel implements Runnable {
 		thread.start();
 		TowerRenderer.start();
 		EnemyRenderer.start();
-		state = GAME;
+		state = MENU;
 		
 	}
 	
@@ -81,36 +80,14 @@ public class TowerMain extends JPanel implements Runnable {
 	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
+		GUI.render(g2d);
 		g2d.setColor(new Color(0, 0, 0));
-		
 		g2d.fillRect(0, 0, Window.width, Window.height);
-		
-		if(state == GAME || state == PAUSED) {
-			TowerRenderer.render(g2d);
-			EnemyRenderer.render(g2d);
-			GUI.render(g2d);
-			
-		}
-		
-		if(state == PAUSED) {
-			GUI.renderMenu(g2d);
-			
-		}
-		
-		g2d.setColor(new Color(255, 0, 0));
-		g2d.fillRect(500, 500, 100, 100);
-		
-		g2d.setColor(new Color(0, 255, 0));
-		g2d.fillRect(525, 525, 50, 50);
-		
 	}
 	
 	public void tick() {
 		mouseX = MouseInfo.getPointerInfo().getLocation().getX();
 		mouseY = MouseInfo.getPointerInfo().getLocation().getY();
-		
 		GUI.tick();
-		
 	}
-	
 }

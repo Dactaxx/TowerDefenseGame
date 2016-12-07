@@ -1,5 +1,7 @@
 package towerdefense;
 
+import towers.Tower;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -9,13 +11,11 @@ public class KeyInput implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if(key == KeyEvent.VK_ESCAPE) {
-			if(TowerMain.state == TowerMain.GAME) {
-				TowerMain.state = TowerMain.PAUSED;
-				
-			}	else if(TowerMain.state == TowerMain.PAUSED) {
-					TowerMain.state = TowerMain.GAME;
-				
-				}
+			if(TowerMain.paused) {
+				TowerMain.paused = false;
+			} else {
+				TowerMain.paused = true;
+			}
 			
 		}
 		
