@@ -10,7 +10,7 @@ public class KeyInput implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		if(key == KeyEvent.VK_ESCAPE) {
+		if(key == KeyEvent.VK_ESCAPE && TowerMain.state == TowerMain.GAME) {
 			if(TowerMain.paused) {
 				TowerMain.paused = false;
 			} else {

@@ -49,7 +49,7 @@ public class TowerMain extends JPanel implements Runnable {
 		thread.start();
 		TowerRenderer.start();
 		EnemyRenderer.start();
-		state = MENU;
+		state = GAME;
 		
 	}
 	
@@ -82,7 +82,7 @@ public class TowerMain extends JPanel implements Runnable {
 		Graphics2D g2d = (Graphics2D)g;
 		GUI.render(g2d);
 		g2d.setColor(new Color(0, 0, 0));
-		g2d.fillRect(0, 0, Window.width, Window.height);
+		g2d.drawRect(0, 0, Window.width, Window.height);
 	}
 	
 	public void tick() {

@@ -20,7 +20,16 @@ public class Game {
     }
 
     public static void tick() {
+        if(TowerMain.paused) {
 
+            if(TowerMain.mouseX >(towerdefense.Window.width - resume.getWidth()) / 2 && TowerMain.mouseX < (towerdefense.Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (towerdefense.Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 && TowerMain.mouseY < (towerdefense.Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 + resume.getHeight() && TowerMain.mouseDown) {
+                System.exit(1);
+            }
+
+            if(TowerMain.mouseX >(towerdefense.Window.width - resume.getWidth()) / 2 && TowerMain.mouseX < (towerdefense.Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (resume.getHeight() * 2 + 50) / 2 && TowerMain.mouseY < (towerdefense.Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() && TowerMain.mouseDown) {
+                TowerMain.paused = false;
+            }
+        }
     }
 
     public static void renderMenu(Graphics2D g2d) {
