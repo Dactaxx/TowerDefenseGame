@@ -14,13 +14,15 @@ import javax.imageio.ImageIO;
 
 public class GUI {
 	//if h concludes an image name, it denotes that it is the hovered version of an image
-	public static BufferedImage resume, exit, resumeh, exith;
+	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver;
 	public static void init() throws IOException {
 		resume = ImageIO.read(new File("res/resume.png"));
 		exit = ImageIO.read(new File("res/exit.png"));
 		resumeh = ImageIO.read(new File("res/resumeh.png"));
 		exith = ImageIO.read(new File("res/exith.png"));
-
+        menuBack = ImageIO.read(new File("res/menuBack.png"));
+        menuIconReg = ImageIO.read(new File("res/menuIconReg.png"));
+        menuIconOver = ImageIO.read(new File("res/menuIconOver.png"));
 	}
 	
 	public static void tick() {

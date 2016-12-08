@@ -8,42 +8,64 @@ import towerdefense.Window;
 import java.awt.*;
 
 import static GUI.GUI.*;
+import static towerdefense.TowerMain.*;
+import static towerdefense.Window.height;
+import static towerdefense.Window.width;
 
 public class Game {
+
+    public static int menuDropInc = 0;
+    public static boolean clicked = false;
+    public static double clickedX = 0;
+    public static double clickedY = 0;
 
     public static void render(Graphics2D g2d) {
         TowerRenderer.render(g2d);
         EnemyRenderer.render(g2d);
-        if(TowerMain.paused) {
-            renderMenu(g2d);
-        }
+        renderMenu(g2d);
     }
 
     public static void tick() {
-        if(TowerMain.paused) {
+        if(mouseDown && !clicked) {
+            clicked = true;
+            clickedX = mouseX;
+            clickedY = mouseY;
+        }
+        if(!mouseDown && clicked)
+            clicked();
 
-            if(TowerMain.mouseX >(towerdefense.Window.width - resume.getWidth()) / 2 && TowerMain.mouseX < (towerdefense.Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (towerdefense.Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 && TowerMain.mouseY < (towerdefense.Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 + resume.getHeight() && TowerMain.mouseDown) {
-                System.exit(1);
-            }
+        if(paused && menuDropInc < height / 4)
+            menuDropInc += 10;
+        if(!paused && menuDropInc > 0)
+            menuDropInc -= 10;
+        if(menuDropInc < 0)
+            menuDropInc = 0;
+        if(menuDropInc > height / 4)
+            menuDropInc = height / 4;
+        if(paused) {
 
-            if(TowerMain.mouseX >(towerdefense.Window.width - resume.getWidth()) / 2 && TowerMain.mouseX < (towerdefense.Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (resume.getHeight() * 2 + 50) / 2 && TowerMain.mouseY < (towerdefense.Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() && TowerMain.mouseDown) {
-                TowerMain.paused = false;
-            }
+
+
         }
     }
 
     public static void renderMenu(Graphics2D g2d) {
-        g2d.drawImage(resume, (Window.width - resume.getWidth()) / 2, (Window.height - (resume.getHeight() * 2 + 50)) / 2, null);
-        g2d.drawImage(exit, (Window.width - exit.getWidth()) / 2, (Window.height - (exit.getHeight() * 2 + 50)) / 2 + exit.getHeight() + 50, null);
-
-        if(TowerMain.mouseX >(Window.width - exith.getWidth()) / 2 && TowerMain.mouseX < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 && TowerMain.mouseY < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight() + 50 + resume.getHeight()) {
-            g2d.drawImage(exith, (Window.width - exith.getWidth()) / 2, (Window.height - (exith.getHeight() * 2 + 50)) / 2 + exith.getHeight() + 50, null);
-
+        if(mouseX < width - 30 && mouseY < 60 && mouseX > width - 60 && mouseY > 30) {
+            g2d.drawImage(menuIconReg, width - 60, 30, 30, 30, null);
+        } else {
+            g2d.drawImage(menuIconOver, width - 60, 30, 30, 30, null);
         }
+        g2d.drawImage(menuBack, width - 90, height / 4, width - 1, menuDropInc, null);
+    }
 
-        if(TowerMain.mouseX >(Window.width - resume.getWidth()) / 2 && TowerMain.mouseX < (Window.width - resume.getWidth()) / 2 + resume.getWidth() && TowerMain.mouseY > (Window.height - (resume.getHeight() * 2 + 50)) / 2 && TowerMain.mouseY < (Window.height - (resume.getHeight() * 2 + 50)) / 2 + resume.getHeight()) {
-            g2d.drawImage(resumeh, (Window.width - resumeh.getWidth()) / 2, (Window.height - (resumeh.getHeight() * 2 + 50)) / 2, null);
-
+    public static void clicked() {
+        clicked = false;
+        if(mouseX < width - 30 && mouseY < 60 && mouseX > width - 60 && mouseY > 30 && clickedX < width - 30 && clickedY < 60 && clickedX > width - 60 && clickedY > 30) {
+            if(paused) {
+                paused = false;
+            } else {
+                paused = true;
+            }
         }
     }
 }
