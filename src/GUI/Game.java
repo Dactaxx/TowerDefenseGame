@@ -55,7 +55,13 @@ public class Game {
         } else {
             g2d.drawImage(menuIconOver, width - 60, 30, 30, 30, null);
         }
+        g2d.setColor(new Color(0, 0, 0));
         g2d.drawImage(menuBack, width - 90, height / 4, width - 1, menuDropInc, null);
+        if (menuDropInc > height / 40) { //Top row
+            //g2d.setFont(dataControl);
+            g2d.drawString("Sound Effects", width - 70, 60 + height / 36);
+            g2d.drawString("Master Volume", width - 70, 60 + height / 40);
+        }
     }
 
     public static void clicked() {
