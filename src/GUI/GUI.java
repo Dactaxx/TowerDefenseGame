@@ -1,10 +1,6 @@
 package GUI;
 
-import com.sun.org.apache.xml.internal.security.utils.JavaUtils;
-import towerdefense.EnemyRenderer;
 import towerdefense.TowerMain;
-import towerdefense.TowerRenderer;
-import towerdefense.Window;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -15,7 +11,7 @@ import javax.imageio.ImageIO;
 
 public class GUI {
 	//if h concludes an image name, it denotes that it is the hovered version of an image
-	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver;
+	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, visor;
     public static Font dataControl;
 
 	public static void init() throws IOException {
@@ -26,11 +22,11 @@ public class GUI {
         menuBack = ImageIO.read(new File("res/menuBack.png"));
         menuIconReg = ImageIO.read(new File("res/menuIconReg.png"));
         menuIconOver = ImageIO.read(new File("res/menuIconOver.png"));
+        visor = ImageIO.read(new File("res/visor.png"));
         try {
             dataControl = Font.createFont(Font.TRUETYPE_FONT, new File("res/someTimeLater.otf"));
 
         } catch (Exception ex) {}
-        System.out.println(dataControl);
 	}
 	
 	public static void tick() {

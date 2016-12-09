@@ -1,16 +1,16 @@
-package towerdefense;
+package towers;
 
-import java.awt.Color;
+import towerdefense.TowerMain;
+
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
-public class TowerRenderer implements Runnable {
+public class TowerControl implements Runnable {
 	public static LinkedList<towers.Tower> towerlist = new LinkedList<towers.Tower>();
 
 	public static synchronized void start() {
-		Thread thread = new Thread(new TowerRenderer());
+		Thread thread = new Thread(new TowerControl());
 		thread.start();
-		
 	}
 	
 	@Override
@@ -21,30 +21,21 @@ public class TowerRenderer implements Runnable {
 			if(now - then >= 16666667) {
 				then = System.nanoTime();
 				if(TowerMain.state == TowerMain.GAME) tick();
-				
 			}
 			now = System.nanoTime();
-			
 		}
-		
 	}
 	
 	public static void tick() {
 		for(int i = 0; i < towerlist.size(); i++) {
 			towerlist.get(i).tick();
-			
 		}
-		
 	}
 	
 	//render is invoked in the main because of paintComponent reference jargon
 	public static void render(Graphics2D g2d) {
 		for(int i = 0; i < towerlist.size(); i++) {
 			towerlist.get(i).render(g2d);
-		
 		}
-		
 	}
-	
-	
 }

@@ -1,9 +1,7 @@
 package GUI;
 
 import towerdefense.EnemyRenderer;
-import towerdefense.TowerMain;
-import towerdefense.TowerRenderer;
-import towerdefense.Window;
+import towers.TowerControl;
 
 import java.awt.*;
 
@@ -20,7 +18,7 @@ public class Game {
     public static double clickedY = 0;
 
     public static void render(Graphics2D g2d) {
-        TowerRenderer.render(g2d);
+        TowerControl.render(g2d);
         EnemyRenderer.render(g2d);
         renderMenu(g2d);
     }
@@ -50,10 +48,14 @@ public class Game {
     }
 
     public static void renderMenu(Graphics2D g2d) {
-        if(mouseX < width - 30 && mouseY < 60 && mouseX > width - 60 && mouseY > 30) {
-            g2d.drawImage(menuIconReg, width - 60, 30, 30, 30, null);
+        int menuHeight = height / 2;
+        int menuWidth = width / 10;
+        int menuCenterX = width - width / 8;
+        int menuCenterY = height / 4;
+        if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15) {
+            g2d.drawImage(menuIconReg, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
         } else {
-            g2d.drawImage(menuIconOver, width - 60, 30, 30, 30, null);
+            g2d.drawImage(menuIconOver, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
         }
         g2d.setColor(new Color(0, 0, 0));
         g2d.drawImage(menuBack, width - 90, height / 4, width - 1, menuDropInc, null);

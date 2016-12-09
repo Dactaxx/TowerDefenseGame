@@ -1,6 +1,7 @@
 package towerdefense;
 
 import GUI.GUI;
+import towers.TowerControl;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,7 +24,7 @@ public class TowerMain extends JPanel implements Runnable {
 	
 	public static void main(String[] args) throws IOException {
 		start();
-		TowerRenderer.start();
+		TowerControl.start();
 		
 	}
 
@@ -33,7 +34,7 @@ public class TowerMain extends JPanel implements Runnable {
 		Window.frame.addKeyListener(new KeyInput());
 
 		towers.Turret turret = new towers.Turret(500, 500);
-		TowerRenderer.towerlist.add(turret);
+		TowerControl.towerlist.add(turret);
 		
 		enemies.BasicEnemy basicEnemy = new enemies.BasicEnemy(0, 350);
 		EnemyRenderer.enemylist.add(basicEnemy);
@@ -47,7 +48,7 @@ public class TowerMain extends JPanel implements Runnable {
 		
 		Thread thread = new Thread(new TowerMain());
 		thread.start();
-		TowerRenderer.start();
+		TowerControl.start();
 		EnemyRenderer.start();
 		state = GAME;
 		
