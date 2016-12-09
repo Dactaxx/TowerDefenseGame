@@ -32,14 +32,14 @@ public class Game {
         if(!mouseDown && clicked)
             clicked();
 
-        if(paused && menuDropInc < height / 4)
+        if(paused && menuDropInc < 3 * height / 4)
             menuDropInc += 10;
         if(!paused && menuDropInc > 0)
             menuDropInc -= 10;
         if(menuDropInc < 0)
             menuDropInc = 0;
-        if(menuDropInc > height / 4)
-            menuDropInc = height / 4;
+        if(menuDropInc > 3 * height / 4)
+            menuDropInc = 3 * height / 4;
         if(paused) {
 
 
@@ -58,7 +58,7 @@ public class Game {
             g2d.drawImage(menuIconOver, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
         }
         g2d.setColor(new Color(0, 0, 0));
-        g2d.drawImage(menuBack, width - 90, height / 4, width - 1, menuDropInc, null);
+        g2d.drawImage(menuBack, menuCenterX - width / 8, menuCenterY + 15, menuCenterX + width / 8, menuDropInc, null);
         if (menuDropInc > height / 40) { //Top row
             //g2d.setFont(dataControl);
             g2d.drawString("Sound Effects", width - 70, 60 + height / 36);
