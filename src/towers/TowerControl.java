@@ -5,6 +5,8 @@ import towerdefense.TowerMain;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
+import static towerdefense.TowerMain.paused;
+
 public class TowerControl implements Runnable {
 	public static LinkedList<towers.Tower> towerlist = new LinkedList<towers.Tower>();
 
@@ -16,11 +18,12 @@ public class TowerControl implements Runnable {
 	@Override
 	public void run() {
 		long then = System.nanoTime();
-		while(TowerMain.running && TowerMain.state == TowerMain.GAME || !TowerMain.paused) {
+		while(TowerMain.running && TowerMain.state == TowerMain.GAME || !paused) {
 			long now = System.nanoTime();
 			if(now - then >= 16666667) {
 				then = System.nanoTime();
-				if(TowerMain.state == TowerMain.GAME) tick();
+				if(TowerMain.state == TowerMain.GAME && !paused)
+					tick();
 			}
 			now = System.nanoTime();
 		}

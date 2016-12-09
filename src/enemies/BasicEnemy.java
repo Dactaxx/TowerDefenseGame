@@ -18,7 +18,7 @@ public class BasicEnemy extends Enemy {
 	
 	@Override
 	public void render(Graphics2D g2d) {
-		g2d.setColor(new Color(255, 0, 0));
+		g2d.setColor(new Color(0, 194, 255));
 		g2d.fillRect((int)this.getX() - 25, (int)this.getY() - 25, 50, 50);
 		
 	}

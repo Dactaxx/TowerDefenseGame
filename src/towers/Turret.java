@@ -29,16 +29,13 @@ public class Turret extends Tower {
 
 /*		if(TowerMain.mouseX < this.getX()) {
 			this.setAngle(Math.atan((this.getY() - TowerMain.mouseY) / (this.getX() - TowerMain.mouseX)) - Math.toRadians(90));
-			
 		}
 		
 		if(TowerMain.mouseX > this.getX()) {
 			this.setAngle(Math.atan((this.getY() - TowerMain.mouseY) / (this.getX() - TowerMain.mouseX)) - Math.toRadians(90) + Math.toRadians(180));
-			
 		}
 */		
 		trackEnemy();
-		
 	}
 
 	@Override
@@ -54,8 +51,6 @@ public class Turret extends Tower {
 		//draws range circle
 		g2d.setColor(new Color(255, 255, 255));
 		g2d.drawOval((int)this.getX() - (int)this.getRange(), (int)this.getY() - (int)this.getRange(), (int)this.getRange() * 2, (int)this.getRange() * 2);
-		
-		
 	}
 
 	@Override
@@ -67,9 +62,7 @@ public class Turret extends Tower {
 			if(distance < closestEnemyDistance) {
 				closestEnemyDistance = distance;
 				closestEnemy = i;
-				
 			}
-			
 		}
 		
 		if(closestEnemyDistance <= this.getRange()) {
@@ -78,18 +71,11 @@ public class Turret extends Tower {
 			
 			if(ex < this.getX()) {
 				this.setAngle(Math.atan((this.getX() - ey)/(this.getX() - ex)) - Math.toRadians(90));
-			
 			}
 			
 			if(ex > this.getX()) {
 				this.setAngle(Math.atan((this.getX() - ey)/(this.getX() - ex)) - Math.toRadians(90) + Math.toRadians(180));
-			
 			}
-			
 		}
-		
 	}
-	
-	
-	
 }

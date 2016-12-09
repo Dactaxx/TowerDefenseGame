@@ -12,7 +12,7 @@ import static towerdefense.Window.width;
 
 public class Game {
 
-    public static int menuDropInc = 0;
+    public static int menuDropInc, menuHeight, menuWidth, menuCenterX, menuCenterY;
     public static boolean clicked = false;
     public static double clickedX = 0;
     public static double clickedY = 0;
@@ -48,10 +48,10 @@ public class Game {
     }
 
     public static void renderMenu(Graphics2D g2d) {
-        int menuHeight = height / 2;
-        int menuWidth = width / 10;
-        int menuCenterX = width - width / 8;
-        int menuCenterY = height / 4;
+        menuHeight = height / 2;
+        menuWidth = width / 10;
+        menuCenterX = width - width / 8;
+        menuCenterY = height / 4;
         if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15) {
             g2d.drawImage(menuIconReg, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
         } else {
@@ -68,7 +68,7 @@ public class Game {
 
     public static void clicked() {
         clicked = false;
-        if(mouseX < width - 30 && mouseY < 60 && mouseX > width - 60 && mouseY > 30 && clickedX < width - 30 && clickedY < 60 && clickedX > width - 60 && clickedY > 30) {
+        if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15 && clickedX < menuCenterX + 15 && clickedY < menuCenterY + 15 && clickedX > menuCenterX - 15 && clickedY > menuCenterY - 15) {
             if(paused) {
                 paused = false;
             } else {
