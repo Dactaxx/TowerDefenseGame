@@ -21,6 +21,7 @@ public class TowerMain extends JPanel implements Runnable {
 	public static boolean paused = false;
 	public static double mouseX, mouseY;
 	public static boolean mouseDown = false;
+	public static long now;
 	
 	public static void main(String[] args) throws IOException {
 		start();
@@ -45,13 +46,11 @@ public class TowerMain extends JPanel implements Runnable {
 	
 	public static synchronized void start() throws IOException {
 		running = true;
-		
 		Thread thread = new Thread(new TowerMain());
 		thread.start();
 		TowerControl.start();
 		EnemyRenderer.start();
 		state = GAME;
-		
 	}
 	
 	@Override
@@ -61,22 +60,17 @@ public class TowerMain extends JPanel implements Runnable {
 			
 		}	catch (IOException e) {
 			e.printStackTrace();
-			
 			}
 		
 		long then = System.nanoTime();
 		while(running) {
-			long now = System.nanoTime();
+			now = System.nanoTime();
 			if(now - then >= 16666667) {
 				then = System.nanoTime();
 				tick();
 				Window.frame.repaint();
-				
 			}
-			now = System.nanoTime();
-			
 		}
-		
 	}
 	
 	public void paintComponent(Graphics g) {

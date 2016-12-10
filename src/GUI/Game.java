@@ -12,15 +12,27 @@ import static towerdefense.Window.width;
 
 public class Game {
 
-    public static int menuDropInc, menuHeight, menuWidth, menuCenterX, menuCenterY;
+    public static int menuHeight, menuWidth, menuCenterX, menuCenterY;
     public static boolean clicked = false;
     public static double clickedX = 0;
     public static double clickedY = 0;
 
     public static void render(Graphics2D g2d) {
+        menuHeight = height / 2;
+        menuWidth = width / 10;
+        menuCenterX = width - width / 8;
+        menuCenterY = height / 4;
         TowerControl.render(g2d);
         EnemyRenderer.render(g2d);
+        if (paused)
         renderMenu(g2d);
+        g2d.drawImage(visor, 0, 0, width, height, null);
+        if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15) {
+            g2d.drawImage(menuIconReg, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
+        } else {
+            g2d.drawImage(menuIconOver, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
+        }
+
     }
 
     public static void tick() {
@@ -32,14 +44,6 @@ public class Game {
         if(!mouseDown && clicked)
             clicked();
 
-        if(paused && menuDropInc < 3 * height / 4)
-            menuDropInc += 10;
-        if(!paused && menuDropInc > 0)
-            menuDropInc -= 10;
-        if(menuDropInc < 0)
-            menuDropInc = 0;
-        if(menuDropInc > 3 * height / 4)
-            menuDropInc = 3 * height / 4;
         if(paused) {
 
 
@@ -48,22 +52,15 @@ public class Game {
     }
 
     public static void renderMenu(Graphics2D g2d) {
-        menuHeight = height / 2;
-        menuWidth = width / 10;
-        menuCenterX = width - width / 8;
-        menuCenterY = height / 4;
-        if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15) {
-            g2d.drawImage(menuIconReg, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
-        } else {
-            g2d.drawImage(menuIconOver, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
-        }
+        g2d.drawImage(menuBack, 0, 0, width, height, null); //Menu Background
         g2d.setColor(new Color(0, 0, 0));
-        g2d.drawImage(menuBack, menuCenterX - width / 8, menuCenterY + 15, menuCenterX + width / 8, menuDropInc, null);
-        if (menuDropInc > height / 40) { //Top row
-            //g2d.setFont(dataControl);
-            g2d.drawString("Sound Effects", width - 70, 60 + height / 36);
-            g2d.drawString("Master Volume", width - 70, 60 + height / 40);
-        }
+        //g2d.setFont(dataControl);
+        g2d.drawString("Sound Effects", width - 70, 60 + height / 36);
+        g2d.drawString("Master Volume", width - 70, 60 + height / 40);
+    }
+
+    public static void shopBar() {
+
     }
 
     public static void clicked() {
