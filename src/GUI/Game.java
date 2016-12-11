@@ -83,10 +83,8 @@ public class Game {
         if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15 && clickedX < menuCenterX + 15 && clickedY < menuCenterY + 15 && clickedX > menuCenterX - 15 && clickedY > menuCenterY - 15) {
             if(paused) {
                 paused = false;
-                clip.start();
             } else {
                 paused = true;
-                clip.stop();
             }
         }
     }

@@ -7,6 +7,14 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+
+import kuusisto.tinysound.Music;
+import kuusisto.tinysound.Sound;
+import kuusisto.tinysound.TinySound;
 
 import static towerdefense.TowerMain.state;
 
@@ -14,6 +22,9 @@ public class GUI {
 	//if h concludes an image name, it denotes that it is the hovered version of an image
 	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, HUD, grass;
     public static Font dataControl;
+
+    public static  Music transmissionStream, jumpUpStream, crystalWaters;
+    public static int prevState = -1, masterVolume = 100, musicVolume = 100;
 
 	public static void init() throws IOException {
 		resume = ImageIO.read(new File("res/menu/resume.png"));
@@ -27,10 +38,26 @@ public class GUI {
         grass = ImageIO.read(new File("res/grass.png"));
 
 
+        try {
+            dataControl = Font.createFont(Font.TRUETYPE_FONT, new File("res/someTimeLater.otf"));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        TinySound.init();
+        transmissionStream = TinySound.loadMusic("Transmission.wav");
+        jumpUpStream = TinySound.loadMusic("Jump_Up.wav");
+        crystalWaters = TinySound.loadMusic("Crystal_Waters.wav");
+        Music song = TinySound.loadMusic("Crystal_Waters.wav");
+        //Sound coin = TinySound.loadSound("Jump_Up.wav");
+        song.play(true);
     }
 
 	public static void tick() {
 
+        if (state != prevState){
+	        prevState = state;
+
+        }
 
 	    switch(state) {
             case TowerMain.MENU:
