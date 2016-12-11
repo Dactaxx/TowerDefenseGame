@@ -37,13 +37,13 @@ public class GUI {
 
         try {
             dataControl = Font.createFont(Font.TRUETYPE_FONT, new File("res/someTimeLater.otf"));
-            transmissionStream = TinySound.loadMusic("Transmission.wav");
-            jumpUpStream = TinySound.loadMusic("Jump_Up.wav");
-            crystalWaters = TinySound.loadMusic("Crystal_Waters.wav");
         } catch (Exception ex) {
             System.out.println(ex);
         }
         TinySound.init();
+        transmissionStream = TinySound.loadMusic("Transmission.wav");
+        jumpUpStream = TinySound.loadMusic("Jump_Up.wav");
+        crystalWaters = TinySound.loadMusic("Crystal_Waters.wav");
         Music song = TinySound.loadMusic("Crystal_Waters.wav");
         //Sound coin = TinySound.loadSound("Jump_Up.wav");
         song.play(true);
