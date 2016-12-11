@@ -63,11 +63,11 @@ public class TowerMain extends JPanel implements Runnable {
 			e.printStackTrace();
 			}
 		
-		long then = System.nanoTime();
+		long then = System.currentTimeMillis();
 		while(running) {
-			now = System.nanoTime();
-			if(now - then >= 16666667) {
-				then = System.nanoTime();
+			now = System.currentTimeMillis();
+			if(now - then >= 16) {
+				then = System.currentTimeMillis();
 				tick();
 				Window.frame.repaint();
 			}
