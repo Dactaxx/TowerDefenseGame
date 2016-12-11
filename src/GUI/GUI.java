@@ -24,10 +24,10 @@ public class GUI {
     public static FloatControl gainControl;
 
 	public static void init() throws IOException {
-		resume = ImageIO.read(new File("res/resume.png"));
-		exit = ImageIO.read(new File("res/exit.png"));
-		resumeh = ImageIO.read(new File("res/resumeh.png"));
-		exith = ImageIO.read(new File("res/exith.png"));
+		resume = ImageIO.read(new File("res/menu/resume.png"));
+		exit = ImageIO.read(new File("res/menu/exit.png"));
+		resumeh = ImageIO.read(new File("res/menu/resumeh.png"));
+		exith = ImageIO.read(new File("res/menu/exith.png"));
         menuBack = ImageIO.read(new File("res/menuBack.png"));
         menuIconReg = ImageIO.read(new File("res/menuIconReg.png"));
         menuIconOver = ImageIO.read(new File("res/menuIconOver.png"));
@@ -38,7 +38,7 @@ public class GUI {
             clip = AudioSystem.getClip();
             transmissionStream = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("Transmission.wav"));
             jumpUpStream = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("Jump_Up.wav"));
-            crystalWaters = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("Crystal_Waters.wav"));
+            crystalWaters = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("res/Crystal_Waters.wav"));
         } catch (Exception ex) {
             System.out.println(ex);
         }
