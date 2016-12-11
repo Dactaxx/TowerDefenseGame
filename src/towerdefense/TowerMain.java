@@ -53,7 +53,7 @@ public class TowerMain extends JPanel implements Runnable {
 		thread.start();
 		TowerControl.start();
 		EnemyRenderer.start();
-		state = MENU;
+		state = GAME;
 	}
 	
 	@Override

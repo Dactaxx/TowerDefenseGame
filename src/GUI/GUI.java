@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 import static towerdefense.TowerMain.state;
 
@@ -24,8 +25,9 @@ public class GUI {
 	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, HUD;
     public static Font dataControl;
     public static Clip clip;
-    public static AudioInputStream transmissionStream, jumpUpStream;
-    public static int prevState;
+    public static AudioInputStream transmissionStream, jumpUpStream, crystalWaters;
+    public static int prevState = -1, masterVolume = 100, musicVolume = 100;
+    public static FloatControl gainControl;
 
 	public static void init() throws IOException {
 		resume = ImageIO.read(new File("res/resume.png"));
@@ -41,21 +43,19 @@ public class GUI {
             dataControl = Font.createFont(Font.TRUETYPE_FONT, new File("res/someTimeLater.otf"));
             clip = AudioSystem.getClip();
             transmissionStream = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("Transmission.wav"));
-            jumpUpStream = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("Transmission.wav"));
-            clip.open(jumpUpStream);
+            jumpUpStream = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("Jump_Up.wav"));
+            crystalWaters = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("Crystal_Waters.wav"));
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        clip.loop(-1);
-        clip.start();
     }
 
 	public static void tick() {
-
         if (state != prevState){
 	        prevState = state;
-            System.out.println("Change");
+            clip.close();
             try {
+                clip = AudioSystem.getClip();
                 switch(state) {
                     case TowerMain.MENU:
                         clip.open(jumpUpStream);
@@ -64,12 +64,15 @@ public class GUI {
                         clip.open(transmissionStream);
                         break;
                     case TowerMain.SETTINGS:
-                        clip.open(jumpUpStream);
+                        clip.open(crystalWaters);
                         break;
                 }
                 } catch (Exception ex) {
                 System.out.println(ex);
             }
+            clip.loop(-1);
+            gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(6.0206f * masterVolume * musicVolume / 10000); // Reduce volume by 10 decibels.
             clip.start();
         }
 
