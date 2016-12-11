@@ -11,9 +11,6 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
-import static GUI.GUI.clip;
-import static GUI.GUI.jumpUpStream;
-
 public class TowerMain extends JPanel implements Runnable {
 	private static final long serialVersionUID = 8291911686213150373L;
 	public static boolean running = false;
@@ -44,6 +41,7 @@ public class TowerMain extends JPanel implements Runnable {
 		EnemyRenderer.enemylist.add(basicEnemy);
 		
 		GUI.init();
+		Sound.init();
 		
 	}
 	

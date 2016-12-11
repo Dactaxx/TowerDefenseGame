@@ -1,14 +1,24 @@
 package GUI;
 
-import towerdefense.EnemyRenderer;
-import towers.TowerControl;
-
-import java.awt.*;
-
-import static GUI.GUI.*;
-import static towerdefense.TowerMain.*;
+import static GUI.GUI.HUD;
+import static GUI.GUI.menuBack;
+import static GUI.GUI.menuIconOver;
+import static GUI.GUI.menuIconReg;
+import static towerdefense.Sound.clip;
+import static towerdefense.TowerMain.mouseDown;
+import static towerdefense.TowerMain.mouseX;
+import static towerdefense.TowerMain.mouseY;
+import static towerdefense.TowerMain.paused;
 import static towerdefense.Window.height;
 import static towerdefense.Window.width;
+
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Window;
+
+import towerdefense.EnemyRenderer;
+import towers.TowerControl;
 
 public class Game {
 
@@ -16,12 +26,13 @@ public class Game {
     public static boolean clicked = false;
     public static double clickedX = 0;
     public static double clickedY = 0;
-
+    
     public static void render(Graphics2D g2d) {
         menuHeight = height / 2;
         menuWidth = width / 10;
         menuCenterX = width - width / 8;
         menuCenterY = height / 4;
+        g2d.drawImage(GUI.grass, 0, 0, towerdefense.Window.width, towerdefense.Window.height, null);
         TowerControl.render(g2d);
         EnemyRenderer.render(g2d);
         if (paused)

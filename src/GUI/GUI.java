@@ -20,8 +20,9 @@ import static towerdefense.TowerMain.state;
 
 public class GUI {
 	//if h concludes an image name, it denotes that it is the hovered version of an image
-	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, HUD;
+	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, HUD, grass;
     public static Font dataControl;
+
     public static  Music transmissionStream, jumpUpStream, crystalWaters;
     public static int prevState = -1, masterVolume = 100, musicVolume = 100;
 
@@ -34,6 +35,8 @@ public class GUI {
         menuIconReg = ImageIO.read(new File("res/menuIconReg.png"));
         menuIconOver = ImageIO.read(new File("res/menuIconOver.png"));
         HUD = ImageIO.read(new File("res/HUD.png"));
+        grass = ImageIO.read(new File("res/grass.png"));
+
 
         try {
             dataControl = Font.createFont(Font.TRUETYPE_FONT, new File("res/someTimeLater.otf"));
@@ -50,10 +53,12 @@ public class GUI {
     }
 
 	public static void tick() {
+
         if (state != prevState){
 	        prevState = state;
 
         }
+
 	    switch(state) {
             case TowerMain.MENU:
                 Menu.tick();
