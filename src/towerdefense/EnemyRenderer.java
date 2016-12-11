@@ -17,15 +17,15 @@ public class EnemyRenderer implements Runnable {
 	
 	@Override
 	public void run() {
-			long then = System.nanoTime();
+			long then = System.currentTimeMillis();
 			while(TowerMain.running) {
-				long now = System.nanoTime();
-				if(now - then >= 16666667) {
-					then = System.nanoTime();
+				long now = System.currentTimeMillis();
+				if(now - then >= 16) {
+					then = System.currentTimeMillis();
 					if(TowerMain.state == TowerMain.GAME && !paused)
 						tick();
 				}
-				now = System.nanoTime();
+				now = System.currentTimeMillis();
 			}
 	}
 	
