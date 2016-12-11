@@ -1,11 +1,5 @@
 package GUI;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import sun.audio.AudioData;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import sun.audio.ContinuousAudioDataStream;
 import towerdefense.TowerMain;
 
 import java.awt.*;
