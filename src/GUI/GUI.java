@@ -72,7 +72,7 @@ public class GUI {
             }
             clip.loop(-1);
             gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(6.0206f * masterVolume * musicVolume / 10000); // Reduce volume by 10 decibels.
+            gainControl.setValue(6.0206f * masterVolume * musicVolume / 10000);
             clip.start();
         }
 
