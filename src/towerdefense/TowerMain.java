@@ -11,7 +11,8 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
-import static GUI.GUI.backgroundMusicPlayer;
+import static GUI.GUI.clip;
+import static GUI.GUI.jumpUpStream;
 
 public class TowerMain extends JPanel implements Runnable {
 	private static final long serialVersionUID = 8291911686213150373L;
@@ -52,8 +53,7 @@ public class TowerMain extends JPanel implements Runnable {
 		thread.start();
 		TowerControl.start();
 		EnemyRenderer.start();
-		state = GAME;
-		//backgroundMusicPlayer.play();
+		state = MENU;
 	}
 	
 	@Override

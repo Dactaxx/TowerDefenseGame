@@ -2,26 +2,30 @@ package GUI;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 import towerdefense.TowerMain;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URL;
+import java.io.*;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+import static towerdefense.TowerMain.state;
 
 public class GUI {
 	//if h concludes an image name, it denotes that it is the hovered version of an image
-	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, visor;
+	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, HUD;
     public static Font dataControl;
-    public static Media transition;
-    public static MediaPlayer backgroundMusicPlayer;
+    public static Clip clip;
+    public static AudioInputStream transmissionStream, jumpUpStream;
+    public static int prevState;
 
 	public static void init() throws IOException {
 		resume = ImageIO.read(new File("res/resume.png"));
@@ -31,18 +35,45 @@ public class GUI {
         menuBack = ImageIO.read(new File("res/menuBack.png"));
         menuIconReg = ImageIO.read(new File("res/menuIconReg.png"));
         menuIconOver = ImageIO.read(new File("res/menuIconOver.png"));
-        visor = ImageIO.read(new File("res/visor.png"));
+        HUD = ImageIO.read(new File("res/HUD.png"));
 
         try {
             dataControl = Font.createFont(Font.TRUETYPE_FONT, new File("res/someTimeLater.otf"));
-
-        } catch (Exception ex) {}
-        //backgroundMusicPlayer = new MediaPlayer(new Media("res/Transmission.mp3"));
-        //AudioPlayer.player.start(new AudioStream(new FileInputStream("res/Transmission.mp3")));
-	}
+            clip = AudioSystem.getClip();
+            transmissionStream = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("Transmission.wav"));
+            jumpUpStream = AudioSystem.getAudioInputStream(GUI.class.getClassLoader().getResourceAsStream("Transmission.wav"));
+            clip.open(jumpUpStream);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        clip.loop(-1);
+        clip.start();
+    }
 
 	public static void tick() {
-	    switch(TowerMain.state) {
+
+        if (state != prevState){
+	        prevState = state;
+            System.out.println("Change");
+            try {
+                switch(state) {
+                    case TowerMain.MENU:
+                        clip.open(jumpUpStream);
+                        break;
+                    case TowerMain.GAME:
+                        clip.open(transmissionStream);
+                        break;
+                    case TowerMain.SETTINGS:
+                        clip.open(jumpUpStream);
+                        break;
+                }
+                } catch (Exception ex) {
+                System.out.println(ex);
+            }
+            clip.start();
+        }
+
+	    switch(state) {
             case TowerMain.MENU:
                 Menu.tick();
                 break;
@@ -56,7 +87,7 @@ public class GUI {
 	}
 
 	public static void render(Graphics2D g2d) {
-        switch(TowerMain.state) {
+        switch(state) {
             case TowerMain.MENU:
                 Menu.render(g2d);
                 break;

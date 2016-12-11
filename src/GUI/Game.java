@@ -26,13 +26,13 @@ public class Game {
         EnemyRenderer.render(g2d);
         if (paused)
         renderMenu(g2d);
-        g2d.drawImage(visor, 0, 0, width, height, null);
-        if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15) {
+        g2d.drawImage(HUD, 0, 0, width, height, null); //HUD
+        if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15) { //Pause button
             g2d.drawImage(menuIconReg, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
         } else {
             g2d.drawImage(menuIconOver, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
         }
-
+        renderShopBar();
     }
 
     public static void tick() {
@@ -52,14 +52,18 @@ public class Game {
     }
 
     public static void renderMenu(Graphics2D g2d) {
-        g2d.drawImage(menuBack, 0, 0, width, height, null); //Menu Background
+        g2d.setComposite(AlphaComposite.getInstance(3, 0.7f));
+        g2d.setColor(new Color(0, 255, 255));
+        g2d.drawImage(menuBack, width / 2 - width / 8, height / 2 - height / 3, width / 4, height * 2 / 3, null); //Paused shading
+        g2d.fillRect(0, 0, width, height); //Menu Background
+        g2d.setComposite(AlphaComposite.getInstance(3, 1f));
         g2d.setColor(new Color(0, 0, 0));
         //g2d.setFont(dataControl);
         g2d.drawString("Sound Effects", width - 70, 60 + height / 36);
         g2d.drawString("Master Volume", width - 70, 60 + height / 40);
     }
 
-    public static void shopBar() {
+    public static void renderShopBar() {
 
     }
 
