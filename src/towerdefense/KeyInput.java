@@ -7,9 +7,6 @@ import javax.sound.sampled.FloatControl;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import static GUI.GUI.*;
-import static GUI.GUI.clip;
-import static GUI.GUI.musicVolume;
 import static towerdefense.TowerMain.paused;
 
 public class KeyInput implements KeyListener {
@@ -20,10 +17,8 @@ public class KeyInput implements KeyListener {
 		if(key == KeyEvent.VK_ESCAPE && TowerMain.state == TowerMain.GAME) {
             if(paused) {
                 paused = false;
-                clip.start();
             } else {
                 paused = true;
-                clip.stop();
             }
 		}
 		
