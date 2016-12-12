@@ -23,12 +23,19 @@ public class TrackRenderer {
 			
 		}
 		
+		tracks.add(new BentLeftDown(1280, 350));
+
 		for(int i = 0; i < 5; i++) {
 			tracks.add(new StraightDown(1280, 350 + 64 + i * 64));
 			
 		}
 		
-		tracks.add(new BentLeftDown(1280, 350));
+		tracks.add(new BentUpLeft(1280, 320 + 350 + 64));
+		
+		for(int i  = 0; i < 15; i++) {
+			tracks.add(new StraightLeft(1280 - 64 - i * 64, 320 + 350 + 64));
+			
+		}
 		
 	}
 	
