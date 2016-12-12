@@ -19,9 +19,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import Tracks.TrackRenderer;
 import towerdefense.EnemyRenderer;
 import towers.TowerControl;
+import tracks.TrackRenderer;
 
 public class Game {
 
@@ -39,8 +39,10 @@ public class Game {
         TrackRenderer.render(g2d);
         EnemyRenderer.render(g2d);
         TowerControl.render(g2d);
-        if (paused) renderMenu(g2d);
-        g2d.drawImage(HUD, 0, 0, width, height, null); //HUD
+        if (paused) {
+        	renderMenu(g2d);
+        	g2d.drawImage(HUD, 0, 0, width, height, null);
+        } //HUD
         if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15) { //Pause button
             g2d.drawImage(menuIconReg, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
         } else {

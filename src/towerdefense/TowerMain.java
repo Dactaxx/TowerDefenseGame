@@ -43,7 +43,7 @@ public class TowerMain extends JPanel implements Runnable {
 		GUI.init();
 		Sound.init();
 		towers.TowerControl.init();
-		Tracks.TrackRenderer.init();
+		tracks.TrackRenderer.init();
 		
 	}
 	
