@@ -1,4 +1,4 @@
-package Tracks;
+package tracks;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -19,9 +19,11 @@ public class TrackRenderer {
 		}
 		
 		for(int i = 0; i < 20; i++) {
-			tracks.add(new StraightRight(200 + i * 64, 350));
+			tracks.add(new StraightRight(i * 64, 350));
 			
 		}
+		
+		tracks.add(new BentLeftDown(1280, 350));
 		
 	}
 	
