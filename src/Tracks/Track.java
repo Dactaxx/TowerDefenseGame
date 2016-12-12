@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 public abstract class Track {
 	private double x, y, position;
 	public static enum trackType {
-		STRAIGHTLEFT, STRAIGHTRIGHT, BENTLEFTDOWN
+		STRAIGHTLEFT, STRAIGHTRIGHT, STRAIGHTDOWN, BENTLEFTDOWN
 	}
 	
 	private trackType type;

@@ -28,6 +28,11 @@ public class BasicEnemy extends Enemy {
 						this.setY(trackY);
 					break;
 					
+					case STRAIGHTDOWN:
+						this.setX(trackX);
+						this.setY(this.getY() + 10);
+					break;
+					
 					case BENTLEFTDOWN:
 						this.setX(this.getX() + 7);
 						this.setY(this.getY() + 10);

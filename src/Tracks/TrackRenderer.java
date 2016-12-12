@@ -23,6 +23,11 @@ public class TrackRenderer {
 			
 		}
 		
+		for(int i = 0; i < 5; i++) {
+			tracks.add(new StraightDown(1280, 350 + 64 + i * 64));
+			
+		}
+		
 		tracks.add(new BentLeftDown(1280, 350));
 		
 	}
