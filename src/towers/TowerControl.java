@@ -1,16 +1,29 @@
 package towers;
 
-import towerdefense.TowerMain;
+import static towerdefense.TowerMain.paused;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 
-import static towerdefense.TowerMain.paused;
-import static towerdefense.TowerMain.state;
+import javax.imageio.ImageIO;
+
+import towerdefense.TowerMain;
 
 public class TowerControl implements Runnable {
 	public static LinkedList<towers.Tower> towerlist = new LinkedList<towers.Tower>();
-
+	public static BufferedImage towerBase;
+	
+	public static void init() {
+		try {
+		towerBase = ImageIO.read(new File("res/towerbase.png"));
+		}	catch(IOException e) {
+			
+		}
+		
+	}
 	public static synchronized void start() {
 		Thread thread = new Thread(new TowerControl());
 		thread.start();

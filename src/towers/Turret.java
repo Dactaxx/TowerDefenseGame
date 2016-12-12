@@ -9,17 +9,15 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
 import towerdefense.EnemyRenderer;
 
 public class Turret extends Tower {
-	private BufferedImage base, turret;
+	private BufferedImage turret;
 	
 	public Turret(double x, double y) throws IOException {
 		this.setX(x);
 		this.setY(y);
 		this.setRange(300);
-		base = ImageIO.read(new File("res/towerbase.png"));
 		turret = ImageIO.read(new File("res/towers/turret.png"));
 		
 	}
@@ -40,7 +38,7 @@ public class Turret extends Tower {
 
 	@Override
 	public void render(Graphics2D g2d) {
-		g2d.drawImage(base, (int)(getX() - base.getWidth() / 2), (int)(getY() - base.getHeight() / 2), null);
+		g2d.drawImage(TowerControl.towerBase, (int)(getX() - TowerControl.towerBase.getWidth() / 2), (int)(getY() - TowerControl.towerBase.getHeight() / 2), null);
 		
 		//rotation; currently just points toward mouse; add enemy tracking later
 		AffineTransform trans = AffineTransform.getRotateInstance(this.getAngle(), turret.getWidth() / 2, turret.getHeight() / 2);
