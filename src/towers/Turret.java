@@ -11,6 +11,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import towerdefense.EnemyRenderer;
 
+import projectiles.*;
+
 public class Turret extends Tower {
 	private BufferedImage turret;
 	
@@ -19,6 +21,7 @@ public class Turret extends Tower {
 		this.setY(y);
 		this.setRange(300);
 		turret = ImageIO.read(new File("res/towers/turret.png"));
+		this.setSpeed(0);
 		
 	}
 	
@@ -34,17 +37,25 @@ public class Turret extends Tower {
 		}
 */		
 		trackEnemy();
+		if(this.getSpeed() >= 60) {
+			this.setSpeed(0);
+		}
+		
+		if(!this.isShooting() && this.getSpeed() != 0) {
+			this.setSpeed(this.getSpeed() + 1);
+		}
+		
 	}
 
 	@Override
 	public void render(Graphics2D g2d) {
-		g2d.drawImage(TowerControl.towerBase, (int)(getX() - TowerControl.towerBase.getWidth() / 2), (int)(getY() - TowerControl.towerBase.getHeight() / 2), null);
+		g2d.drawImage(TowerControl.towerBase, (int)(this.getX() - TowerControl.towerBase.getWidth() / 2), (int)(this.getY() - TowerControl.towerBase.getHeight() / 2), null);
 		
 		//rotation; currently just points toward mouse; add enemy tracking later
 		AffineTransform trans = AffineTransform.getRotateInstance(this.getAngle(), turret.getWidth() / 2, turret.getHeight() / 2);
 		AffineTransformOp op = new AffineTransformOp(trans, AffineTransformOp.TYPE_BILINEAR);
 		
-		g2d.drawImage(op.filter(turret, null), (int)(getX() - turret.getWidth() / 2), (int)(getY() - turret.getHeight() / 2), null);
+		g2d.drawImage(op.filter(turret, null), (int)(this.getX() - turret.getWidth() / 2), (int)(this.getY() - turret.getHeight() / 2), null);
 		
 		//draws range circle
 		g2d.setColor(new Color(255, 255, 255));
@@ -74,6 +85,21 @@ public class Turret extends Tower {
 			if(ex > this.getX()) {
 				this.setAngle(Math.atan((this.getX() - ey)/(this.getX() - ex)) - Math.toRadians(90) + Math.toRadians(180));
 			}
+			
+			this.setShooting(true);
+			if(this.getSpeed() == 0) this.shoot(ex, ey);
+			this.setSpeed(this.getSpeed() + 1);
+			
+		} else {
+			this.setShooting(false);
 		}
+		
 	}
+
+	private void shoot(double enemyX, double enemyY) {
+		ProjectileControl.projectiles.add(new BasicProjectile(this.getX(), this.getY(), .2 * (enemyX  - this.getX()), .2 * (enemyY - this.getY())));
+		System.out.println(ProjectileControl.projectiles.size());
+		
+	}
+	
 }

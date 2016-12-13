@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
 import towerdefense.EnemyRenderer;
 import towers.TowerControl;
 import tracks.TrackRenderer;
+import projectiles.ProjectileControl;
 
 public class Game {
 
@@ -39,6 +40,7 @@ public class Game {
         TrackRenderer.render(g2d);
         EnemyRenderer.render(g2d);
         TowerControl.render(g2d);
+        ProjectileControl.render(g2d);
         if (paused) {
         	renderMenu(g2d);
         	g2d.drawImage(HUD, 0, 0, width, height, null);

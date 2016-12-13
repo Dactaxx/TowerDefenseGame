@@ -4,7 +4,7 @@ package enemies;
 import java.awt.Graphics2D;
 
 public abstract class Enemy {
-	private double x, y, angle, hp, speed;
+	private double x, y, angle, hp, maxHp, speed;
 	
 	public abstract void tick();
 	public abstract void render(Graphics2D g2d);
@@ -58,6 +58,14 @@ public abstract class Enemy {
 	public void setSpeed(double speed) {
 		this.speed = speed;
 		
+	}
+	
+	public double getMaxHp() {
+		return maxHp;
+	}
+	
+	public void setMaxHp(double maxHp) {
+		this.maxHp = maxHp;
 	}
 	
 }

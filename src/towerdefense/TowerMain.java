@@ -2,6 +2,7 @@ package towerdefense;
 
 import GUI.GUI;
 import towers.TowerControl;
+import projectiles.ProjectileControl;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -53,7 +54,9 @@ public class TowerMain extends JPanel implements Runnable {
 		thread.start();
 		TowerControl.start();
 		EnemyRenderer.start();
+		ProjectileControl.start();
 		state = GAME;
+		
 	}
 	
 	@Override
