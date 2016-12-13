@@ -1,4 +1,4 @@
-# TowerDefenseGame
+# [Really cool name for a tower defense game]
 A tower defense game
 
 ## Credits
