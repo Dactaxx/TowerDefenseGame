@@ -55,7 +55,7 @@ public class Turret extends Tower {
 		AffineTransform trans = AffineTransform.getRotateInstance(this.getAngle(), turret.getWidth() / 2, turret.getHeight() / 2);
 		AffineTransformOp op = new AffineTransformOp(trans, AffineTransformOp.TYPE_BILINEAR);
 		
-		g2d.drawImage(op.filter(turret, null), (int)(this.getX() - turret.getWidth() / 2), (int)(this.getY() - turret.getHeight() / 2), null);
+		g2d.drawImage(op.filter(turret, null), (int)(this.getX() - 64), (int)(this.getY() - 64), 128, 128, null);
 		
 		//draws range circle
 		g2d.setColor(new Color(255, 255, 255));
@@ -98,7 +98,6 @@ public class Turret extends Tower {
 
 	private void shoot(double enemyX, double enemyY) {
 		ProjectileControl.projectiles.add(new BasicProjectile(this.getX(), this.getY(), .2 * (enemyX  - this.getX()), .2 * (enemyY - this.getY())));
-		System.out.println(ProjectileControl.projectiles.size());
 		
 	}
 	

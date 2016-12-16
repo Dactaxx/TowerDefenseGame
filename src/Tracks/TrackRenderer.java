@@ -23,7 +23,7 @@ public class TrackRenderer {
 			
 		}
 		
-		tracks.add(new BentLeftDown(1280, 350));
+		tracks.add(new BentRightDown(1280, 350));
 
 		for(int i = 0; i < 5; i++) {
 			tracks.add(new StraightDown(1280, 350 + 64 + i * 64));
@@ -36,6 +36,16 @@ public class TrackRenderer {
 			tracks.add(new StraightLeft(1280 - 64 - i * 64, 320 + 350 + 64));
 			
 		}
+		
+		tracks.add(new BentLeftUp(1280 - 64 - 15 * 64, 320 + 350 + 64));
+		tracks.add(new StraightUp(1280 - 64 - 15 * 64, 320 + 350));
+		tracks.add(new BentDownLeft(1280 - 64 - 15 * 64, 320 + 350 - 64));
+		tracks.add(new StraightLeft(1280 - 64 - 15 * 64 - 64, 320 + 350 - 64));
+		tracks.add(new BentLeftDown(1280 - 64 - 15 * 64 - 128, 320 + 350 - 64));
+		tracks.add(new StraightDown(1280 - 64 - 15 * 64 - 128, 320 + 350));
+		tracks.add(new StraightDown(1280 - 64 - 15 * 64 - 128, 320 + 350 + 64));
+		tracks.add(new StraightDown(1280 - 64 - 15 * 64 - 128, 320 + 350 + 128));
+		tracks.add(new BentUpRight(1280 - 64 - 15 * 64 -128, 320 + 350 + 128 + 64));
 		
 	}
 	

@@ -41,12 +41,31 @@ public class BasicEnemy extends Enemy {
 						this.setY(trackY);
 					break;
 					
+					case STRAIGHTUP:
+						this.setX(trackX);
+						this.setY(this.getY() - this.getSpeed());
+					break;
+					
 					case STRAIGHTDOWN:
 						this.setX(trackX);
 						this.setY(this.getY() + this.getSpeed());
 					break;
 					
+					case BENTLEFTUP:
+						this.setX(this.getX() - this.getSpeed() / Math.sqrt(2));
+						this.setY(this.getY() - this.getSpeed());
+					break;
+						
 					case BENTLEFTDOWN:
+						this.setX(this.getX() - this.getSpeed() / Math.sqrt(2));
+						this.setY(this.getY() + this.getSpeed());
+					break;
+					
+					case BENTRIGHTUP:
+						this.setX(this.getX() + this.getSpeed() / Math.sqrt(2));
+						this.setY(this.getY() - this.getSpeed());
+					
+					case BENTRIGHTDOWN:
 						this.setX(this.getX() + this.getSpeed() / Math.sqrt(2));
 						this.setY(this.getY() + this.getSpeed());
 					break;
@@ -56,6 +75,21 @@ public class BasicEnemy extends Enemy {
 						this.setY(this.getY() + this.getSpeed() / Math.sqrt(2));
 					break;
 					
+					case BENTUPRIGHT:
+						this.setX(this.getX() + this.getSpeed());
+						this.setY(this.getY() + this.getSpeed() / Math.sqrt(2));
+					break;
+				
+					case BENTDOWNLEFT:
+						this.setX(this.getX() - this.getSpeed());
+						this.setY(this.getY() - this.getSpeed() / Math.sqrt(2));
+					break;
+					
+					case BENTDOWNRIGHT:
+						this.setX(this.getX() - this.getSpeed());
+						this.setY(this.getY() + this.getSpeed() / Math.sqrt(2));
+					break;
+						
 				}
 				
 			}
@@ -65,23 +99,27 @@ public class BasicEnemy extends Enemy {
 		searching = true;
 		index = 0;
 		while(searching && index < ProjectileControl.projectiles.size()) {
-			double projX = ProjectileControl.projectiles.get(index).getX();
-			double projY = ProjectileControl.projectiles.get(index).getY();
-			if(Math.abs((this.getX() - projX)) <= 50 && Math.abs(this.getY() - projY) <= 50) {
-				searching = false;
-				Projectile.projectileType typeCurrent = ProjectileControl.projectiles.get(index).getType();
-				switch(typeCurrent) {
-					case BASIC:
-						this.setHp(this.getHp() - 1);
-						ProjectileControl.projectiles.remove(index);
-					break;
-
+			try {
+				double projX = ProjectileControl.projectiles.get(index).getX();
+				double projY = ProjectileControl.projectiles.get(index).getY();
+				if(Math.abs((this.getX() - projX)) <= 50 && Math.abs(this.getY() - projY) <= 50) {
+					searching = false;
+					Projectile.projectileType typeCurrent = ProjectileControl.projectiles.get(index).getType();
+					switch(typeCurrent) {
+						case BASIC:
+							this.setHp(this.getHp() - 1);
+							ProjectileControl.projectiles.remove(index);
+						break;
+	
+					}
+					
 				}
-				
+				index++;
+			} catch(NullPointerException e) {
+			
 			}
-			index++;
+			
 		}
-		
 		
 	}
 	
