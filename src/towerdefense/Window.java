@@ -15,6 +15,16 @@ public class Window {
 		Window.width = Toolkit.getDefaultToolkit().getScreenSize().width;
 		Window.height = Toolkit.getDefaultToolkit().getScreenSize().height;
 
+		double aspectRatio = (double)width / (double)height;
+		if(aspectRatio < 1920d/1080d) {
+			Window.height = (int)((double)Window.width / (1920d/1080d));
+		} else if(aspectRatio > 1920d/1080d) {
+			Window.width = (int)((double)Window.height * (1920d/1080d));
+		}
+		
+		System.out.println(width);
+		System.out.println(height);
+		
 		scale = (double)width / 1920;
 		
 		frame.setUndecorated(true);
