@@ -9,11 +9,14 @@ import javax.swing.JFrame;
 public class Window {
 	public static JFrame frame = new JFrame("Tower Defense");
 	public static int width, height;
+	public static double scale;
 	
 	public static void createWindow() {
 		Window.width = Toolkit.getDefaultToolkit().getScreenSize().width;
 		Window.height = Toolkit.getDefaultToolkit().getScreenSize().height;
 
+		scale = (double)width / 1920;
+		
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

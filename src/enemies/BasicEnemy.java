@@ -10,6 +10,8 @@ import tracks.TrackRenderer;
 import projectiles.ProjectileControl;
 import projectiles.Projectile;
 
+import towerdefense.Window;
+
 public class BasicEnemy extends Enemy {
 	public BasicEnemy(int x, int y) {
 		this.setX(x);
@@ -126,19 +128,19 @@ public class BasicEnemy extends Enemy {
 	@Override
 	public void render(Graphics2D g2d) {
 		g2d.setColor(new Color(0, 194, 255));
-		g2d.fillRect((int)this.getX() - 25, (int)this.getY() - 25, 50, 50);
+		g2d.fillRect((int)((this.getX() - 25) * Window.scale), (int)((this.getY() - 25) * Window.scale), (int)(50 * Window.scale), (int)(50 * Window.scale));
 		
 		//health bar
 		g2d.setColor(new Color(255, 0, 0));
-		g2d.fillRect((int)this.getX() - 25, (int)this.getY() - 40, 50, 10);
+		g2d.fillRect((int)((this.getX() - 25) * Window.scale), (int)((this.getY() - 40) * Window.scale), (int)(50 * Window.scale), (int)(10 * Window.scale));
 		
 		g2d.setColor(new Color(0, 255, 0));
-		g2d.fillRect((int)this.getX() - 25, (int)this.getY() - 40, (int)(50 * (this.getHp() / this.getMaxHp())), 10);
+		g2d.fillRect((int)((this.getX() - 25) * Window.scale), (int)((this.getY() - 40) * Window.scale), (int)(Window.scale * 50 * (this.getHp() / this.getMaxHp())), 10);
 		
 		//health text
 		g2d.setColor(new Color(255, 255, 255));
 		g2d.setFont(new Font("Arial", Font.PLAIN, 25));
-		g2d.drawString(Integer.toString((int)this.getHp()), (int)this.getX() - Integer.toString((int)this.getHp()).length() * 5 - 5, (int)this.getY() + 8);
+		g2d.drawString(Integer.toString((int)this.getHp()), (int)((this.getX() - Integer.toString((int)this.getHp()).length() * 5 - 5) * Window.scale), (int)((this.getY() + 8) * Window.scale));
 		
 	}
 	
