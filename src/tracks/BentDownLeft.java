@@ -1,6 +1,7 @@
 package tracks;
 
 import java.awt.Graphics2D;
+import towerdefense.Window;
 
 public class BentDownLeft extends Track {
 	public BentDownLeft(double x, double y) {
@@ -12,7 +13,7 @@ public class BentDownLeft extends Track {
 	
 	@Override
 	public void render(Graphics2D g2d) {
-		g2d.drawImage(TrackRenderer.stone, (int)this.getX() - 32, (int)this.getY() - 32, 64, 64, null);
+		g2d.drawImage(TrackRenderer.stone, (int)((this.getX() - 32) * Window.scale), (int)((this.getY() - 32) * Window.scale), (int)(64 * Window.scale), (int)(64 * Window.scale), null);
 		
 	}
 	

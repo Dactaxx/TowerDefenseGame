@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import towerdefense.EnemyRenderer;
-
+import towerdefense.Window;
 import projectiles.*;
 
 public class Turret extends Tower {
@@ -49,17 +49,17 @@ public class Turret extends Tower {
 
 	@Override
 	public void render(Graphics2D g2d) {
-		g2d.drawImage(TowerControl.towerBase, (int)(this.getX() - TowerControl.towerBase.getWidth() / 2), (int)(this.getY() - TowerControl.towerBase.getHeight() / 2), null);
+		g2d.drawImage(TowerControl.towerBase, (int)((this.getX() - TowerControl.towerBase.getWidth() / 2) * Window.scale), (int)((this.getY() - TowerControl.towerBase.getHeight() / 2) * Window.scale), null);
 		
 		//rotation; currently just points toward mouse; add enemy tracking later
 		AffineTransform trans = AffineTransform.getRotateInstance(this.getAngle(), turret.getWidth() / 2, turret.getHeight() / 2);
 		AffineTransformOp op = new AffineTransformOp(trans, AffineTransformOp.TYPE_BILINEAR);
 		
-		g2d.drawImage(op.filter(turret, new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB)), (int)(this.getX() - 64), (int)(this.getY() - 64), 128, 128, null);
+		g2d.drawImage(op.filter(turret, new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB)), (int)((this.getX() - 64) * Window.scale), (int)((this.getY() - 64) * Window.scale), (int)(128 * Window.scale), (int)(128 * Window.scale), null);
 		
 		//draws range circle
 		g2d.setColor(new Color(255, 255, 255));
-		g2d.drawOval((int)this.getX() - (int)this.getRange(), (int)this.getY() - (int)this.getRange(), (int)this.getRange() * 2, (int)this.getRange() * 2);
+		g2d.drawOval((int)((this.getX() - this.getRange()) * Window.scale), (int)((this.getY() - this.getRange()) * Window.scale), (int)((this.getRange() * 2) * Window.scale), (int)((this.getRange() * 2) * Window.scale));
 	}
 
 	@Override

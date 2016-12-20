@@ -135,7 +135,7 @@ public class BasicEnemy extends Enemy {
 		g2d.fillRect((int)((this.getX() - 25) * Window.scale), (int)((this.getY() - 40) * Window.scale), (int)(50 * Window.scale), (int)(10 * Window.scale));
 		
 		g2d.setColor(new Color(0, 255, 0));
-		g2d.fillRect((int)((this.getX() - 25) * Window.scale), (int)((this.getY() - 40) * Window.scale), (int)(Window.scale * 50 * (this.getHp() / this.getMaxHp())), 10);
+		g2d.fillRect((int)((this.getX() - 25) * Window.scale), (int)((this.getY() - 40) * Window.scale), (int)(Window.scale * 50 * (this.getHp() / this.getMaxHp())), (int)(10 * Window.scale));
 		
 		//health text
 		g2d.setColor(new Color(255, 255, 255));
