@@ -4,6 +4,8 @@ import GUI.GUI;
 import towers.TowerControl;
 import projectiles.ProjectileControl;
 
+import static towerdefense.TowerMain.paused;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -68,14 +70,14 @@ public class TowerMain extends JPanel implements Runnable {
 			e.printStackTrace();
 			}
 		
-		long then = System.currentTimeMillis();
-		while(running) {
-			now = System.currentTimeMillis();
-			if(now - then >= 16) {
-				then = System.currentTimeMillis();
-				tick();
-				Window.frame.repaint();
-			}
+		while(TowerMain.running) {
+			try {
+				Thread.sleep(16);
+			} catch (InterruptedException e) {
+				
+			}	
+			if(TowerMain.state == TowerMain.GAME && !paused) tick();
+			Window.frame.repaint();
 		}
 	}
 	

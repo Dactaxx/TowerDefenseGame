@@ -44,15 +44,13 @@ public class ProjectileControl implements Runnable {
 
 	@Override
 	public void run() {
-		long then = System.currentTimeMillis();
 		while(TowerMain.running) {
-			long now = System.currentTimeMillis();
-			if(now - then >= 16) {
-				then = System.currentTimeMillis();
-				if(TowerMain.state == TowerMain.GAME && !paused)
-					tick();
-			}
-			now = System.currentTimeMillis();
+			try {
+				Thread.sleep(16);
+			} catch (InterruptedException e) {
+				
+			}	
+			if(TowerMain.state == TowerMain.GAME && !paused) tick();
 		}
 	}
 }

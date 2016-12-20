@@ -9,24 +9,23 @@ import static towerdefense.TowerMain.paused;
 
 public class EnemyRenderer implements Runnable {
 	public static LinkedList<Enemy> enemylist = new LinkedList<Enemy>();
-
+	public static Thread thread;
+	
 	public static void start() {
-		Thread thread = new Thread(new EnemyRenderer());
+		thread = new Thread(new EnemyRenderer());
 		thread.start();
 	}
 	
 	@Override
 	public void run() {
-			long then = System.currentTimeMillis();
-			while(TowerMain.running) {
-				long now = System.currentTimeMillis();
-				if(now - then >= 16) {
-					then = System.currentTimeMillis();
-					if(TowerMain.state == TowerMain.GAME && !paused)
-						tick();
-				}
-				now = System.currentTimeMillis();
-			}
+		while(TowerMain.running) {
+			try {
+				Thread.sleep(16);
+			} catch (InterruptedException e) {
+				
+			}	
+			if(TowerMain.state == TowerMain.GAME && !paused) tick();
+		}
 	}
 	
 	public static void tick() {
