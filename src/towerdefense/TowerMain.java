@@ -83,6 +83,9 @@ public class TowerMain extends JPanel implements Runnable {
 	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
+		g2d.translate(0, (Window.nativeHeight - Window.height) / 2);
+		g2d.setColor(new Color(0, 0, 0));
+		g2d.fillRect(0, (Window.nativeHeight - Window.height) / -2, Window.nativeWidth, Window.nativeHeight);
 		GUI.render(g2d);
 		g2d.setColor(new Color(0, 0, 0));
 		g2d.drawRect(0, 0, Window.width, Window.height);
