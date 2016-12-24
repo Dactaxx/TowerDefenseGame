@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
@@ -83,8 +84,11 @@ public class Sidebar {
 		}
 		
 		public void render(Graphics2D g2d) {
+			g2d.drawImage(TowerControl.towerBase, (int)((this.getX() - TowerControl.towerBase.getWidth() / 2) * Window.scale), (int)((this.getY() - TowerControl.towerBase.getHeight() / 2) * Window.scale), null);
 			g2d.drawImage(tower, (int)((TowerMain.mouseX - 64) * Window.scale), (int)((TowerMain.mouseY - 64) * Window.scale), (int)(128 * Window.scale), (int)(128 * Window.scale), null);
 			
+			g2d.setColor(new Color(255, 255, 255));
+			g2d.drawOval((int)((this.getX() - 300) * Window.scale), (int)((this.getY() - 300) * Window.scale), (int)((300 * 2) * Window.scale), (int)((300 * 2) * Window.scale));
 		}
 	}
 	
