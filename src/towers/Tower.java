@@ -3,7 +3,8 @@ package towers;
 import java.awt.Graphics2D;
 
 public abstract class Tower {
-	private double x, y, angle, range;
+	private double x, y, angle, range, speed;
+	private boolean isShooting;
 	
 	public abstract void tick();
 	public abstract void render(Graphics2D g2d);
@@ -44,6 +45,21 @@ public abstract class Tower {
 	
 	public void setRange(double range) {
 		this.range = range;
+	}
+	
+	public double getSpeed() {
+		return speed;
+	}
+	
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+	public boolean isShooting() {
+		return isShooting;
+	}
+	
+	public void setShooting(boolean isShooting) {
+		this.isShooting = isShooting;
 	}
 
 }

@@ -2,6 +2,9 @@ package towerdefense;
 
 import GUI.GUI;
 import towers.TowerControl;
+import projectiles.ProjectileControl;
+
+import static towerdefense.TowerMain.paused;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -42,6 +45,8 @@ public class TowerMain extends JPanel implements Runnable {
 		
 		GUI.init();
 		Sound.init();
+		towers.TowerControl.init();
+		tracks.TrackRenderer.init();
 		
 	}
 	
@@ -51,7 +56,9 @@ public class TowerMain extends JPanel implements Runnable {
 		thread.start();
 		TowerControl.start();
 		EnemyRenderer.start();
+		ProjectileControl.start();
 		state = GAME;
+		
 	}
 	
 	@Override
@@ -63,19 +70,22 @@ public class TowerMain extends JPanel implements Runnable {
 			e.printStackTrace();
 			}
 		
-		long then = System.currentTimeMillis();
-		while(running) {
-			now = System.currentTimeMillis();
-			if(now - then >= 16) {
-				then = System.currentTimeMillis();
-				tick();
-				Window.frame.repaint();
-			}
+		while(TowerMain.running) {
+			try {
+				Thread.sleep(16);
+			} catch (InterruptedException e) {
+				
+			}	
+			if(TowerMain.state == TowerMain.GAME && !paused) tick();
+			Window.frame.repaint();
 		}
 	}
 	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
+		g2d.translate(0, (Window.nativeHeight - Window.height) / 2);
+		g2d.setColor(new Color(0, 0, 0));
+		g2d.fillRect(0, (Window.nativeHeight - Window.height) / -2, Window.nativeWidth, Window.nativeHeight);
 		GUI.render(g2d);
 		g2d.setColor(new Color(0, 0, 0));
 		g2d.drawRect(0, 0, Window.width, Window.height);

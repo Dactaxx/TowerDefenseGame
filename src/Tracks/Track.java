@@ -1,10 +1,16 @@
-package Tracks;
+package tracks;
 
 import java.awt.Graphics2D;
 
 public abstract class Track {
 	private double x, y, position;
+	public static enum trackType {
+		STRAIGHTLEFT, STRAIGHTRIGHT, STRAIGHTUP, STRAIGHTDOWN, BENTLEFTDOWN, BENTLEFTUP, BENTRIGHTDOWN, BENTRIGHTUP, BENTUPLEFT, BENTUPRIGHT, BENTDOWNLEFT, BENTDOWNRIGHT
+		
+	}
 	
+	private trackType type;
+
 	public abstract void render(Graphics2D g2d);
 	
 	
@@ -36,6 +42,16 @@ public abstract class Track {
 	public void setPosition(double position) {
 		this.position = position;
 		
+	}
+	
+	
+	public trackType getType() {
+		return type;
+	}
+
+
+	public void setType(trackType type) {
+		this.type = type;
 	}
 	
 }

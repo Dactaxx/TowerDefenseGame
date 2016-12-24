@@ -4,7 +4,6 @@ import static GUI.GUI.HUD;
 import static GUI.GUI.menuBack;
 import static GUI.GUI.menuIconOver;
 import static GUI.GUI.menuIconReg;
-import static towerdefense.Sound.clip;
 import static towerdefense.TowerMain.mouseDown;
 import static towerdefense.TowerMain.mouseX;
 import static towerdefense.TowerMain.mouseY;
@@ -15,10 +14,15 @@ import static towerdefense.Window.width;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Window;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import towerdefense.EnemyRenderer;
 import towers.TowerControl;
+import tracks.TrackRenderer;
+import projectiles.ProjectileControl;
 
 public class Game {
 
@@ -33,11 +37,14 @@ public class Game {
         menuCenterX = width - width / 8;
         menuCenterY = height / 4;
         g2d.drawImage(GUI.grass, 0, 0, towerdefense.Window.width, towerdefense.Window.height, null);
-        TowerControl.render(g2d);
+        TrackRenderer.render(g2d);
         EnemyRenderer.render(g2d);
-        if (paused)
-        renderMenu(g2d);
-        g2d.drawImage(HUD, 0, 0, width, height, null); //HUD
+        TowerControl.render(g2d);
+        ProjectileControl.render(g2d);
+        if (paused) {
+        	renderMenu(g2d);
+        	g2d.drawImage(HUD, 0, 0, width, height, null);
+        } //HUD
         if(mouseX < menuCenterX + 15 && mouseY < menuCenterY + 15 && mouseX > menuCenterX - 15 && mouseY > menuCenterY - 15) { //Pause button
             g2d.drawImage(menuIconReg, menuCenterX - 15, menuCenterY - 15, 30, 30, null);
         } else {

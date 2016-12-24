@@ -1,26 +1,26 @@
-/GUI/
-/enemies/
-/towerdefense/
-/towers/
+/Crystal Waters.mp3
 /Crystal_Waters.wav
+/GUI/
 /HUD.png
 /HUDUncut.png
-/Tracks/
-/menu/
-/Crystal Waters.mp3
 /Jump Up.mp3
 /Jump_Up.wav
+/Thumbs.db
+/Tracks/
 /Transmission.mp3
 /Transmission.wav
 /dataControl.ttf
-/exit.png
-/exith.png
+/enemies/
+/grass.png
+/kuusisto/
+/menu/
 /menuBack.png
 /menuIconOver.png
 /menuIconReg.png
-/resume.png
-/resumeh.png
+/projectiles/
 /someTimeLater.otf
-/grass.png
-/kuusisto/
 /stone.png
+/towerbase.png
+/towerdefense/
+/towers/
+/tracks/
