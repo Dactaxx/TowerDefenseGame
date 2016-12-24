@@ -1,6 +1,7 @@
 package towers;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -58,6 +59,9 @@ public class Turret extends Tower {
 		//draws range circle
 		g2d.setColor(new Color(255, 255, 255));
 		g2d.drawOval((int)((this.getX() - this.getRange()) * Window.scale), (int)((this.getY() - this.getRange()) * Window.scale), (int)((this.getRange() * 2) * Window.scale), (int)((this.getRange() * 2) * Window.scale));
+		
+		g2d.setFont(new Font("Arial", Font.PLAIN, 25));
+		g2d.drawString(Integer.toString((int)Math.toDegrees(this.getAngle())), (int)this.getX(), (int)this.getY());
 	}
 
 	@Override
@@ -77,11 +81,11 @@ public class Turret extends Tower {
 			double ey = EnemyRenderer.enemylist.get(closestEnemy).getY();
 			
 			if(ex < this.getX()) {
-				this.setAngle(Math.atan((this.getX() - ey)/(this.getX() - ex)) - Math.toRadians(90));
+				this.setAngle(Math.atan((this.getY() - ey)/(this.getX() - ex)) + Math.toRadians(270));
 			}
 			
 			if(ex > this.getX()) {
-				this.setAngle(Math.atan((this.getX() - ey)/(this.getX() - ex)) - Math.toRadians(90) + Math.toRadians(180));
+				this.setAngle(Math.atan((this.getY() - ey)/(this.getX() - ex)) - Math.toRadians(90) + Math.toRadians(180));
 			}
 			
 			this.setShooting(true);

@@ -38,7 +38,7 @@ public class TowerMain extends JPanel implements Runnable {
 		Window.frame.addMouseListener(new MouseInput());
 		Window.frame.addKeyListener(new KeyInput());
 
-		towers.Turret turret = new towers.Turret(500, 500);
+		towers.Turret turret = new towers.Turret(1000, 500);
 		TowerControl.towerlist.add(turret);
 		
 		enemies.BasicEnemy basicEnemy = new enemies.BasicEnemy(0, 350);
