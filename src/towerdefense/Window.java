@@ -22,6 +22,9 @@ public class Window {
 		} else if(aspectRatio > 1920d/1080d) {
 			Window.width = (int)((double)Window.nativeHeight * (1920d/1080d));
 			Window.height = nativeHeight;
+		} else if(aspectRatio == 1920d/1080d) {
+			Window.width = nativeWidth;
+			Window.height = nativeHeight;
 		}
 		
 		System.out.println(width);
