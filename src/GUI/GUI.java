@@ -66,6 +66,7 @@ public class GUI {
                 break;
             case TowerMain.GAME:
                 Game.tick();
+                Sidebar.tick();
                 break;
             case TowerMain.SETTINGS:
                 Settings.tick();

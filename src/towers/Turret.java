@@ -14,11 +14,12 @@ import towerdefense.Window;
 import projectiles.*;
 
 public class Turret extends Tower {
-	public Turret(double x, double y) throws IOException {
+	public Turret(double x, double y) {
 		this.setX(x);
 		this.setY(y);
 		this.setRange(300);
 		this.setSpeed(0);
+		this.setAngle(0);
 		
 	}
 	

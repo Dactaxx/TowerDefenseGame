@@ -92,7 +92,7 @@ public class TowerMain extends JPanel implements Runnable {
 		g2d.setColor(new Color(0, 0, 0));
 		g2d.drawRect(0, 0, Window.width, Window.height);
 	}
-	
+
 	public void tick() {
 		mouseX = MouseInfo.getPointerInfo().getLocation().getX();
 		mouseY = MouseInfo.getPointerInfo().getLocation().getY();

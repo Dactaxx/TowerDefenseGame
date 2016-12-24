@@ -63,5 +63,5 @@ public abstract class Tower {
 	public void setShooting(boolean isShooting) {
 		this.isShooting = isShooting;
 	}
-
+	
 }

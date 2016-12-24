@@ -4,20 +4,22 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+import towerdefense.TowerMain;
 import towerdefense.Window;
 import towers.TowerControl;
 
 public class Sidebar {
 	public static LinkedList<Icon> icons = new LinkedList<Icon>();
+	public static LinkedList<fakeTower> fakeTowers = new LinkedList<fakeTower>();
+	public static Sidebar sidebar = new Sidebar();
 	public static void init() {
-		Sidebar sidebar = new Sidebar();
 		icons.add(sidebar.new Icon(TowerControl.turret, (int)(1632 * Window.scale), (int)(16 * Window.scale)));
 		icons.add(sidebar.new Icon(null, (int)(1776 * Window.scale), (int)(16 * Window.scale)));
 		
 	}
 	class Icon {
-		BufferedImage tower;
-		int x, y;
+		private BufferedImage tower;
+		private int x, y;
 		public Icon(BufferedImage tower, int x, int y) {
 			this.tower = tower;
 			this.x = x;
@@ -30,10 +32,81 @@ public class Sidebar {
 			g2d.drawImage(tower, (int)((x + 16) * Window.scale), (int)((y + 32) * Window.scale), (int)(96 * Window.scale), (int)(96 * Window.scale), null);
 			
 		}
+		
+		public int getX() {
+			return x;
+		}
+		public int getY() {
+			return y;
+		}
+		public BufferedImage getTower() {
+			return tower;
+		}
 	}
+	
+	class fakeTower {
+		private double x, y;
+		private BufferedImage tower;
+		public fakeTower(double x, double y, BufferedImage tower) {
+			this.setX(x);
+			this.setY(y);
+			this.setTower(tower);
+		}
+		public double getX() {
+			return x;
+		}
+		public void setX(double x) {
+			this.x = x;
+		}
+		public double getY() {
+			return y;
+		}
+		public void setY(double y) {
+			this.y = y;
+		}
+		public BufferedImage getTower() {
+			return tower;
+		}
+		public void setTower(BufferedImage tower) {
+			this.tower = tower;
+		}
+		
+		public void tick()	{
+			this.x = TowerMain.mouseX;
+			this.y = TowerMain.mouseY;
+			
+			if(!TowerMain.mouseDown) {
+				fakeTowers.remove(this);
+				TowerControl.towerlist.add(new towers.Turret(this.x, this.y));
+				
+			}
+		}
+		
+		public void render(Graphics2D g2d) {
+			g2d.drawImage(tower, (int)((TowerMain.mouseX - 64) * Window.scale), (int)((TowerMain.mouseY - 64) * Window.scale), (int)(128 * Window.scale), (int)(128 * Window.scale), null);
+			
+		}
+	}
+	
+	public static void tick() {
+		for(Icon i : icons) {
+			if(TowerMain.mouseDown && (Math.abs(TowerMain.mouseX - i.getX()) < 128) && (Math.abs(TowerMain.mouseY - i.getY()) < 128) && fakeTowers.size() == 0) {
+				fakeTowers.add(sidebar.new fakeTower(i.getX(), i.getY(), i.getTower()));
+				
+			}
+			
+		}
+	}
+	
 	public static void render(Graphics2D g2d) {
 		for(int i = 0; i < icons.size(); i++) {
 			icons.get(i).render(g2d);
+		}
+		
+		for(fakeTower i : fakeTowers) {
+			i.tick();
+			i.render(g2d);
+			
 		}
 	}
 	
