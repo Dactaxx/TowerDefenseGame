@@ -20,7 +20,7 @@ import static towerdefense.TowerMain.state;
 
 public class GUI {
 	//if h concludes an image name, it denotes that it is the hovered version of an image
-	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, HUD, grass;
+	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, HUD, grass, metal;
     public static Font dataControl;
 
     public static  Music transmissionStream, jumpUpStream, crystalWaters;
@@ -36,6 +36,7 @@ public class GUI {
         menuIconOver = ImageIO.read(new File("res/menuIconOver.png"));
         HUD = ImageIO.read(new File("res/HUD.png"));
         grass = ImageIO.read(new File("res/grass.png"));
+        metal = ImageIO.read(new File("res/menu/metal.png"));
 
 
         try {
@@ -79,6 +80,7 @@ public class GUI {
                 break;
             case TowerMain.GAME:
                 Game.render(g2d);
+            	Sidebar.render(g2d);
                 break;
             case TowerMain.SETTINGS:
                 Settings.render(g2d);

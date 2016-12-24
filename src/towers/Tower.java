@@ -1,10 +1,12 @@
 package towers;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public abstract class Tower {
 	private double x, y, angle, range, speed;
 	private boolean isShooting;
+	public static BufferedImage turret;
 	
 	public abstract void tick();
 	public abstract void render(Graphics2D g2d);

@@ -14,11 +14,12 @@ import towerdefense.TowerMain;
 
 public class TowerControl implements Runnable {
 	public static LinkedList<towers.Tower> towerlist = new LinkedList<towers.Tower>();
-	public static BufferedImage towerBase;
-	
+	public static BufferedImage turret, towerBase;
+
 	public static void init() {
 		try {
 		towerBase = ImageIO.read(new File("res/towerbase.png"));
+		turret = ImageIO.read(new File("res/towers/turret.png"));
 		}	catch(IOException e) {
 			
 		}

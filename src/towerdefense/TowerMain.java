@@ -1,6 +1,7 @@
 package towerdefense;
 
 import GUI.GUI;
+import GUI.Sidebar;
 import towers.TowerControl;
 import projectiles.ProjectileControl;
 
@@ -47,6 +48,7 @@ public class TowerMain extends JPanel implements Runnable {
 		Sound.init();
 		towers.TowerControl.init();
 		tracks.TrackRenderer.init();
+		Sidebar.init();
 		
 	}
 	
