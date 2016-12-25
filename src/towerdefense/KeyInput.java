@@ -7,7 +7,6 @@ import javax.sound.sampled.FloatControl;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import static towerdefense.Sound.clip;
 import static towerdefense.TowerMain.paused;
 
 public class KeyInput implements KeyListener {

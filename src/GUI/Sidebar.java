@@ -14,8 +14,8 @@ public class Sidebar {
 	public static LinkedList<fakeTower> fakeTowers = new LinkedList<fakeTower>();
 	public static Sidebar sidebar = new Sidebar();
 	public static void init() {
-		icons.add(sidebar.new Icon(TowerControl.turret, (int)(1632 * Window.scale), (int)(16 * Window.scale)));
-		icons.add(sidebar.new Icon(null, (int)(1776 * Window.scale), (int)(16 * Window.scale)));
+		icons.add(sidebar.new Icon(TowerControl.turret, (int)(1632), (int)(16)));
+		icons.add(sidebar.new Icon(null, (int)(1776), (int)(16)));
 		
 	}
 	class Icon {
@@ -28,7 +28,7 @@ public class Sidebar {
 			
 		}
 		public void render(Graphics2D g2d) {
-			g2d.drawImage(GUI.metal, (int)(x * Window.scale), (int)(y * Window.scale), 128, 128, null);
+			g2d.drawImage(GUI.metal, (int)(x * Window.scale), (int)(y * Window.scale), (int)(128 * Window.scale), (int)(128 * Window.scale), null);
 			g2d.drawImage(TowerControl.towerBase, (int)((x + 45) * Window.scale), (int)((y + 45 + 16) * Window.scale), (int)(38 * Window.scale), (int)(38 * Window.scale), null);
 			g2d.drawImage(tower, (int)((x + 16) * Window.scale), (int)((y + 32) * Window.scale), (int)(96 * Window.scale), (int)(96 * Window.scale), null);
 			
@@ -73,8 +73,8 @@ public class Sidebar {
 		}
 		
 		public void tick()	{
-			this.x = TowerMain.mouseX;
-			this.y = TowerMain.mouseY;
+			this.x = TowerMain.mouseX / Window.scale;
+			this.y = TowerMain.mouseY / Window.scale;
 			
 			if(!TowerMain.mouseDown) {
 				fakeTowers.remove(this);
@@ -85,7 +85,7 @@ public class Sidebar {
 		
 		public void render(Graphics2D g2d) {
 			g2d.drawImage(TowerControl.towerBase, (int)((this.getX() - TowerControl.towerBase.getWidth() / 2) * Window.scale), (int)((this.getY() - TowerControl.towerBase.getHeight() / 2) * Window.scale), null);
-			g2d.drawImage(tower, (int)((TowerMain.mouseX - 64) * Window.scale), (int)((TowerMain.mouseY - 64) * Window.scale), (int)(128 * Window.scale), (int)(128 * Window.scale), null);
+			g2d.drawImage(tower, (int)((this.getX() - 64) * Window.scale), (int)((this.getY() - 64) * Window.scale), (int)(128 * Window.scale), (int)(128 * Window.scale), null);
 			
 			g2d.setColor(new Color(255, 255, 255));
 			g2d.drawOval((int)((this.getX() - 300) * Window.scale), (int)((this.getY() - 300) * Window.scale), (int)((300 * 2) * Window.scale), (int)((300 * 2) * Window.scale));
@@ -94,7 +94,7 @@ public class Sidebar {
 	
 	public static void tick() {
 		for(Icon i : icons) {
-			if(TowerMain.mouseDown && (Math.abs(TowerMain.mouseX - i.getX()) < 128) && (Math.abs(TowerMain.mouseY - i.getY()) < 128) && fakeTowers.size() == 0) {
+			if(TowerMain.mouseDown && (Math.abs(TowerMain.mouseX / Window.scale - i.getX() - 64)) < 64 && (Math.abs(TowerMain.mouseY / Window.scale - i.getY() - 64 * Window.scale) < 64) && fakeTowers.size() == 0) {
 				fakeTowers.add(sidebar.new fakeTower(i.getX(), i.getY(), i.getTower()));
 				
 			}
