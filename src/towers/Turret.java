@@ -26,16 +26,8 @@ public class Turret extends Tower {
 	
 	@Override
 	public void tick() {
-
-/*		if(TowerMain.mouseX < this.getX()) {
-			this.setAngle(Math.atan((this.getY() - TowerMain.mouseY) / (this.getX() - TowerMain.mouseX)) - Math.toRadians(90));
-		}
-		
-		if(TowerMain.mouseX > this.getX()) {
-			this.setAngle(Math.atan((this.getY() - TowerMain.mouseY) / (this.getX() - TowerMain.mouseX)) - Math.toRadians(90) + Math.toRadians(180));
-		}
-*/		
 		trackEnemy();
+
 		if(this.getSpeed() >= 60) {
 			this.setSpeed(0);
 		}
@@ -48,7 +40,7 @@ public class Turret extends Tower {
 
 	@Override
 	public void render(Graphics2D g2d) {
-		g2d.drawImage(TowerControl.towerBase, (int)((this.getX() - TowerControl.towerBase.getWidth() / 2) * Window.scale), (int)((this.getY() - TowerControl.towerBase.getHeight() / 2) * Window.scale), null);
+		g2d.drawImage(TowerControl.towerBase, (int)((this.getX() - TowerControl.towerBase.getWidth() / 2) * Window.scale), (int)((this.getY() - TowerControl.towerBase.getHeight() / 2) * Window.scale), (int)(TowerControl.towerBase.getWidth() * Window.scale), (int)(TowerControl.towerBase.getHeight() * Window.scale), null);
 		
 		//rotation; currently just points toward mouse; add enemy tracking later
 		AffineTransform trans = AffineTransform.getRotateInstance(this.getAngle(), TowerControl.turret.getWidth() / 2, TowerControl.turret.getHeight() / 2);

@@ -84,7 +84,7 @@ public class Sidebar {
 		}
 		
 		public void render(Graphics2D g2d) {
-			g2d.drawImage(TowerControl.towerBase, (int)((this.getX() - TowerControl.towerBase.getWidth() / 2) * Window.scale), (int)((this.getY() - TowerControl.towerBase.getHeight() / 2) * Window.scale), null);
+			g2d.drawImage(TowerControl.towerBase, (int)((this.getX() - TowerControl.towerBase.getWidth() / 2) * Window.scale), (int)((this.getY() - TowerControl.towerBase.getHeight() / 2) * Window.scale), (int)(TowerControl.towerBase.getWidth() * Window.scale), (int)(TowerControl.towerBase.getHeight() * Window.scale), null);
 			g2d.drawImage(tower, (int)((this.getX() - 64) * Window.scale), (int)((this.getY() - 64) * Window.scale), (int)(128 * Window.scale), (int)(128 * Window.scale), null);
 			
 			g2d.setColor(new Color(255, 255, 255));
