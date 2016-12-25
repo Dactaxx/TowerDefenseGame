@@ -1,6 +1,7 @@
 package towerdefense;
 
 import GUI.GUI;
+import GUI.Sidebar;
 import towers.TowerControl;
 import projectiles.ProjectileControl;
 
@@ -37,7 +38,7 @@ public class TowerMain extends JPanel implements Runnable {
 		Window.frame.addMouseListener(new MouseInput());
 		Window.frame.addKeyListener(new KeyInput());
 
-		towers.Turret turret = new towers.Turret(500, 500);
+		towers.Turret turret = new towers.Turret(1000, 500);
 		TowerControl.towerlist.add(turret);
 		
 		enemies.BasicEnemy basicEnemy = new enemies.BasicEnemy(0, 350);
@@ -47,6 +48,7 @@ public class TowerMain extends JPanel implements Runnable {
 		Sound.init();
 		towers.TowerControl.init();
 		tracks.TrackRenderer.init();
+		Sidebar.init();
 		
 	}
 	
@@ -90,7 +92,7 @@ public class TowerMain extends JPanel implements Runnable {
 		g2d.setColor(new Color(0, 0, 0));
 		g2d.drawRect(0, 0, Window.width, Window.height);
 	}
-	
+
 	public void tick() {
 		mouseX = MouseInfo.getPointerInfo().getLocation().getX();
 		mouseY = MouseInfo.getPointerInfo().getLocation().getY();

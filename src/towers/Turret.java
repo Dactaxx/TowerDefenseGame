@@ -1,6 +1,7 @@
 package towers;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -14,14 +15,12 @@ import towerdefense.Window;
 import projectiles.*;
 
 public class Turret extends Tower {
-	private BufferedImage turret;
-	
-	public Turret(double x, double y) throws IOException {
+	public Turret(double x, double y) {
 		this.setX(x);
 		this.setY(y);
 		this.setRange(300);
-		turret = ImageIO.read(new File("res/towers/turret.png"));
 		this.setSpeed(0);
+		this.setAngle(0);
 		
 	}
 	
@@ -52,14 +51,17 @@ public class Turret extends Tower {
 		g2d.drawImage(TowerControl.towerBase, (int)((this.getX() - TowerControl.towerBase.getWidth() / 2) * Window.scale), (int)((this.getY() - TowerControl.towerBase.getHeight() / 2) * Window.scale), null);
 		
 		//rotation; currently just points toward mouse; add enemy tracking later
-		AffineTransform trans = AffineTransform.getRotateInstance(this.getAngle(), turret.getWidth() / 2, turret.getHeight() / 2);
+		AffineTransform trans = AffineTransform.getRotateInstance(this.getAngle(), TowerControl.turret.getWidth() / 2, TowerControl.turret.getHeight() / 2);
 		AffineTransformOp op = new AffineTransformOp(trans, AffineTransformOp.TYPE_BILINEAR);
 		
-		g2d.drawImage(op.filter(turret, new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB)), (int)((this.getX() - 64) * Window.scale), (int)((this.getY() - 64) * Window.scale), (int)(128 * Window.scale), (int)(128 * Window.scale), null);
+		g2d.drawImage(op.filter(TowerControl.turret, new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB)), (int)((this.getX() - 64) * Window.scale), (int)((this.getY() - 64) * Window.scale), (int)(128 * Window.scale), (int)(128 * Window.scale), null);
 		
 		//draws range circle
 		g2d.setColor(new Color(255, 255, 255));
 		g2d.drawOval((int)((this.getX() - this.getRange()) * Window.scale), (int)((this.getY() - this.getRange()) * Window.scale), (int)((this.getRange() * 2) * Window.scale), (int)((this.getRange() * 2) * Window.scale));
+		
+		g2d.setFont(new Font("Arial", Font.PLAIN, 25));
+		g2d.drawString(Integer.toString((int)Math.toDegrees(this.getAngle())), (int)this.getX(), (int)this.getY());
 	}
 
 	@Override
@@ -79,11 +81,11 @@ public class Turret extends Tower {
 			double ey = EnemyRenderer.enemylist.get(closestEnemy).getY();
 			
 			if(ex < this.getX()) {
-				this.setAngle(Math.atan((this.getX() - ey)/(this.getX() - ex)) - Math.toRadians(90));
+				this.setAngle(Math.atan((this.getY() - ey)/(this.getX() - ex)) + Math.toRadians(270));
 			}
 			
 			if(ex > this.getX()) {
-				this.setAngle(Math.atan((this.getX() - ey)/(this.getX() - ex)) - Math.toRadians(90) + Math.toRadians(180));
+				this.setAngle(Math.atan((this.getY() - ey)/(this.getX() - ex)) - Math.toRadians(90) + Math.toRadians(180));
 			}
 			
 			this.setShooting(true);
