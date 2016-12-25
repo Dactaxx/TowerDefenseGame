@@ -19,6 +19,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import kuusisto.tinysound.Music;
+import kuusisto.tinysound.Sound;
 import towerdefense.EnemyRenderer;
 import towers.TowerControl;
 import tracks.TrackRenderer;
@@ -94,5 +96,9 @@ public class Game {
                 paused = true;
             }
         }
+    }
+
+    public static Music getMusic() {
+        return towerdefense.Sound.transmissionStream;
     }
 }

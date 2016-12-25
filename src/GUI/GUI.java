@@ -23,7 +23,6 @@ public class GUI {
 	public static BufferedImage resume, exit, resumeh, exith, menuBack, menuIconReg, menuIconOver, HUD, grass, metal;
     public static Font dataControl;
 
-    public static  Music transmissionStream, jumpUpStream, crystalWaters;
     public static int prevState = -1, masterVolume = 100, musicVolume = 100;
 
 	public static void init() throws IOException {
@@ -44,13 +43,6 @@ public class GUI {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        TinySound.init();
-        transmissionStream = TinySound.loadMusic("Transmission.wav");
-        jumpUpStream = TinySound.loadMusic("Jump_Up.wav");
-        crystalWaters = TinySound.loadMusic("Crystal_Waters.wav");
-        Music song = TinySound.loadMusic("Crystal_Waters.wav");
-        //Sound coin = TinySound.loadSound("Jump_Up.wav");
-        song.play(true);
     }
 
 	public static void tick() {
